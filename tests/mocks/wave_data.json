@@ -1,0 +1,15 @@
+[
+  {
+    "inputs": {
+			"H": 5,
+			"T": 12,
+			"d": 20,
+			"velocity": { "x": 0, "t": 0, "z": 2.5}
+    },
+    "outputs": {
+			"L": 152,
+			"crest": { "x": 0, "y": 2.5 },
+			"linearHorizontalVelocity": 1.41
+    }
+  }
+]

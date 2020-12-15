@@ -9,7 +9,7 @@ class WaveData {
 		const d = this.d;
 		const T = this.T;
 
-		const Pi = 3.14159265;
+		const Pi = Math.PI;
     const L0 = 9.81 * T * T / (2 * Pi);
     let Ld = L0;
 		let Lg = L0 / 50;
@@ -29,8 +29,8 @@ class WaveData {
 
 	get waterLevel() {
 		const H = this.H;
-    const Pi = 3.14159265;
-
+    const Pi = Math.PI;
+    const L = this.waveLength;
     const k = 2 * Pi / L;
 
     const wL = [];
@@ -45,7 +45,20 @@ class WaveData {
     }
 
     return wL;
-	}
+  }
+
+
+  linearHorizontalVelocity = (x, t, z) => {
+    const Pi = Math.PI;
+    const d = this.d;
+    const H = this.H;
+    const T = this.T;
+    const L = this.waveLength;
+    const w = 2 * Pi / T;
+    const k = 2 * Pi / L;
+    return Pi * H / T * Math.cosh(k * (d + z)) * Math.cos(k * x - w * t) / Math.cosh(k * d);
+  }
+
 }
 
 module.exports = WaveData;

@@ -6,7 +6,7 @@ const {
 const { RectangularSection } = require('../calculations/SectionGeometry');
 const rectangularSectionsCases = require('./mocks/rectangular_sections.json');
 
-describe('Custom Section Data tests', () => {
+describe('Rectangular Section Data tests', () => {
   for (let i = 0; i < rectangularSectionsCases.length; i += 1) {
     describe('Section Properties', ()=> {
       const inputs = rectangularSectionsCases[i].inputs;
