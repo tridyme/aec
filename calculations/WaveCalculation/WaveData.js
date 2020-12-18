@@ -48,7 +48,7 @@ class WaveData {
   }
 
 
-  linearHorizontalVelocity = (x, t, z) => {
+  linearHorizontalVelocity(x, t, z) {
     const Pi = Math.PI;
     const d = this.d;
     const H = this.H;
