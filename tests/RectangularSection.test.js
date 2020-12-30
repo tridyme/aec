@@ -15,7 +15,8 @@ describe('Rectangular Section Data tests', () => {
       const calculatedOutputs = {
         xg: sectionCharac.xg,
         yg: sectionCharac.yg,
-        area: sectionCharac.area
+        area: sectionCharac.area,
+        IxxG: sectionCharac.ixx.IxxG
       };
       console.log(calculatedOutputs);
       const targetOutputs = rectangularSectionsCases[i].outputs;
@@ -28,6 +29,9 @@ describe('Rectangular Section Data tests', () => {
       });
       describe('area', ()=> {
         assert.isBelow(ecart(calculatedOutputs.area, targetOutputs.area), tolerance);
+      });
+      describe('ixx at G', ()=> {
+        assert.isBelow(ecart(calculatedOutputs.IxxG, targetOutputs.IxxG), tolerance);
       });
     })
   }

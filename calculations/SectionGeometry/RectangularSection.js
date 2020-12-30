@@ -39,6 +39,21 @@ class RectangularSection {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.area;
   }
+
+  get ixx() {
+    const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
+    return SectionCharac.ixx;
+  }
+
+  get iyy() {
+    const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
+    return SectionCharac.iyy;
+  }
+
+  get ixy() {
+    const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
+    return SectionCharac.ixy;
+  }
 }
 
 module.exports = RectangularSection;
