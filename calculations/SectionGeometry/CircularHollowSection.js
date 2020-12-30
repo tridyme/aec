@@ -7,8 +7,8 @@ class CircularHollowSection {
   }
   
   get sectionext() {
-		const D = Number(this.D.value);
-		const t = Number(this.t.value);
+		const D = Number(this.D);
+		const t = Number(this.t);
 		const arrExt = [];
 		for (let i = 0; i < 50; i += 1) {
 			const xext = D / 2 * Math.cos(i * 2 * Math.PI / 49);
@@ -19,8 +19,8 @@ class CircularHollowSection {
   }
 
   get sectionint() {
-		const D = Number(this.D.value);
-		const t = Number(this.t.value);
+		const D = Number(this.D);
+		const t = Number(this.t);
 		const arrInt = [];
 		for (let i = 0; i < 50; i += 1) {
 			const xint = (D / 2 - t) * Math.cos(i * 2 * Math.PI / 49);
