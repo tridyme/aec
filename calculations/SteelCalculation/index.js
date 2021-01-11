@@ -1,5 +1,5 @@
-const ec3 = require('./ec3');
+const Eurocode3 = require('./Eurocode3');
 
 module.exports = {
-  ec3
+  Eurocode3
 }

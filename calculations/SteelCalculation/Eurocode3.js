@@ -1,4 +1,4 @@
-const ec3 = {
+const Eurocode3 = {
   CL: (geometry, steel, loads, sectiontype) => {
     const tf = geometry.tf.value;
     const tw = geometry.tw.value;
@@ -598,4 +598,4 @@ const ec3 = {
   }
 };
 
-module.exports = ec3;
+module.exports = Eurocode3;
