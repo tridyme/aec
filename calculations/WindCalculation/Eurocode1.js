@@ -430,8 +430,8 @@ class Eurocode1 {
 
   // Coefficient de dimension
   // B2 coefficient de réponse quasi-statique traduisant l'imparfaite
-  Cs({ C0, z0, B2, zs }) {
-    const Ivzs = this.Iv({ C0, z0, zs });
+  Cs({ B2, zs }) {
+    const Ivzs = this.Iv({ z: zs });
     return (1 + 7 * Ivzs * B2**(0.5))/(1 + 7 * Ivzs);
   }
 
@@ -442,14 +442,7 @@ class Eurocode1 {
   }
 
 
-  // Re: Nombre de Reynolds
-  Re({ b, z }) {
-    const vb = this.vb();
-    const vz = this.vm({ vb, z });
-    const mu = 0.000015 // viscosité de l'air m²/s
 
-    return b * vz / mu;
-  }
 
 
   // phi: Taux de remplissage
@@ -461,6 +454,14 @@ class Eurocode1 {
   v({ z }) {
     const qpz = this.qp({ z });
     return (2 * qpz / 1.225);
+  }
+
+  // Re: Nombre de Reynolds pour treillis
+  Re({ b, z }) {
+    const vz = this.v({ z });
+    const mu = 0.000015 // viscosité de l'air m²/s
+
+    return b * vz / mu;
   }
 
   // Cf0 coefficient de force des structures en treillis et des échafaudages sans effets d'extrémités
@@ -478,7 +479,9 @@ class Eurocode1 {
     return 1;
   }
 
-  Cf({ Cf0, psiLambda }) {
+  Cf({ phi }) {
+    const Cf0 = this.Cf0({ phi });
+    const psiLambda = this.psiLambda();
     return Cf0 * psiLambda;
   }
 
