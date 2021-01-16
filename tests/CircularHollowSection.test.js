@@ -10,20 +10,16 @@ describe('Circular Section Data tests', () => {
   for (let i = 0; i < circularHollowSectionsCases.length; i += 1) {
     describe('Section Properties', ()=> {
       const inputs = circularHollowSectionsCases[i].inputs;
-      console.log(inputs)
       const sectionCharac = new CircularHollowSection(inputs.D, inputs.t);
-      const calculatedOutputs = {
-        xg: sectionCharac.xg,
-        yg: sectionCharac.yg
-      };
-      console.log(calculatedOutputs);
       const targetOutputs = circularHollowSectionsCases[i].outputs;
-      console.log(targetOutputs);
       describe('xg', ()=> {
-        assert.isBelow(ecart(calculatedOutputs.xg, targetOutputs.xg), tolerance);
+        assert.isBelow(ecart(sectionCharac.xg, targetOutputs.xg), tolerance);
       });
       describe('yg', ()=> {
-        assert.isBelow(ecart(calculatedOutputs.yg, targetOutputs.yg), tolerance)
+        assert.isBelow(ecart(sectionCharac.yg, targetOutputs.yg), tolerance)
+      })
+      describe('area', ()=> {
+        assert.isBelow(ecart(sectionCharac.area, targetOutputs.area), tolerance)
       })
     })
   }

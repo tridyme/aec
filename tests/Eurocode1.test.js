@@ -72,11 +72,11 @@ describe('Eurocode 1 Wind Calculation tests', () => {
 				console.log('B2', ec1Data.B2({ typeConstruction, h, h1, b }));
         assert.isBelow(ecart(ec1Data.B2({ typeConstruction, h, h1, b }), wind.B2), tolerance);
 			});
-			describe('n1x:', ()=> {
-				const { h } = wind;
-				console.log('n1x', ec1Data.n1x({ h: 0.6 * h }));
-        assert.isBelow(ecart(ec1Data.n1x({ h }), wind.n1x), tolerance);
-			});
+		// 	describe('n1x:', ()=> {
+		// 		const { h } = wind;
+		// 		console.log('n1x', ec1Data.n1x({ h: 0.6 * h }));
+        // assert.isBelow(ecart(ec1Data.n1x({ h }), wind.n1x), tolerance);
+		// 	});
 			// describe('zs: Hauteur de référence', ()=> {
 			// 	const { typeConstruction, h, h1, zmin } = wind;
       //   assert.isBelow(ecart(ec1Data.zs({ typeConstruction, h, h1, zmin }), wind.zs), tolerance);

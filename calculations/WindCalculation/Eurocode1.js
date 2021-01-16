@@ -5,7 +5,6 @@ class Eurocode1 {
     this.categorie = site;
 	}
 
-
   get documentation() {
     const doc = {
       vb0: {
@@ -409,7 +408,7 @@ class Eurocode1 {
   }
 
   // n1x: Fréqence propre de la structure
-  n1x({ M, K }) {
+  n1x({ M, K, h }) {
     const Pi = Math.PI;
     //return (K / M)**(0.5) / (2 * Pi);
     return 46 / h;
@@ -453,7 +452,7 @@ class Eurocode1 {
   // v: Vitesse de remplissage
   v({ z }) {
     const qpz = this.qp({ z });
-    return (2 * qpz / 1.225);
+    return (2 * qpz / 1.225)**(0.5);
   }
 
   // Re: Nombre de Reynolds pour treillis
