@@ -3,7 +3,6 @@ const SectionGeometry = require('../SectionGeometry');
 class Eurocode3 {
   constructor({ geometry, material, loads, sectionType}) {
     // GEOMETRY
-    console.log('GEOMETRY', geometry);
     this.geometry = geometry;
     this.sectionType = sectionType;
 
