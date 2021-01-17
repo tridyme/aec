@@ -4,23 +4,21 @@ const {
   tolerance
 } = require('./Setup.test');
 const { CircularHollowSection } = require('../calculations/SectionGeometry');
-const circularHollowSectionsCases = require('./mocks/circular_hollow_sections.json');
+const cases = require('./mocks/circular_hollow_sections.json');
 
 describe('Circular Section Data tests', () => {
-  for (let i = 0; i < circularHollowSectionsCases.length; i += 1) {
+  cases.map(section => {
     describe('Section Properties', ()=> {
-      const inputs = circularHollowSectionsCases[i].inputs;
-      const sectionCharac = new CircularHollowSection(inputs.D, inputs.t);
-      const targetOutputs = circularHollowSectionsCases[i].outputs;
-      describe('xg', ()=> {
-        assert.isBelow(ecart(sectionCharac.xg, targetOutputs.xg), tolerance);
-      });
+      const sectionCharac = new CircularHollowSection(section);
       describe('yg', ()=> {
-        assert.isBelow(ecart(sectionCharac.yg, targetOutputs.yg), tolerance)
+        assert.isBelow(ecart(sectionCharac.yg, section.yg), tolerance);
+      });
+      describe('zg', ()=> {
+        assert.isBelow(ecart(sectionCharac.zg, section.zg), tolerance)
       })
-      describe('area', ()=> {
-        assert.isBelow(ecart(sectionCharac.area, targetOutputs.area), tolerance)
+      describe('A', ()=> {
+        assert.isBelow(ecart(sectionCharac.A, section.A), tolerance)
       })
     })
-  }
+  })
 })

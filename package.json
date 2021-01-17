@@ -1,6 +1,6 @@
 {
   "name": "@tridyme/aec",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "npm package for Architecture Engineering and Construction",
   "main": "index.js",
   "scripts": {

@@ -1,11 +1,12 @@
 const CustomSection = require('./CustomSection');
 
-class ISection {
-  constructor({ tf, tw, b, h, c }) {
+class BoxSection {
+  constructor({ tf, tw, b, h, d, c }) {
     this.tf = tf;
 		this.tw = tw;
 		this.b = b;
 		this.h = h;
+		this.d = d;
 		this.c = c;
   }
   
@@ -14,19 +15,20 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
     return [
 			{ x: 0, y: 0 },
 			{ x: b / 2 - c, y: 0 },
 			{ x: b / 2 - c, y: tf - 2 * c },
-			{ x: tw / 2 - c, y: tf - 2 * c },
-			{ x: tw / 2 - c, y: h - tf },
+			{ x: d / 2 + tw - c, y: tf - 2 * c },
+			{ x: d / 2 + tw - c, y: h - tf },
 			{ x: b / 2 - c, y: h - tf },
 			{ x: b / 2 - c, y: h - 2 * c },
 			{ x: -b / 2 + c, y: h - 2 * c },
 			{ x: -b / 2 + c, y: h - tf },
-			{ x: -tw / 2 + c, y: h - tf },
-			{ x: -tw / 2 + c, y: tf - 2 * c },
+			{ x: -d / 2 - tw + c, y: h - tf },
+			{ x: -d / 2 - tw + c, y: tf - 2 * c },
 			{ x: -b / 2 + c, y: tf - 2 * c },
 			{ x: -b / 2 + c, y: 0 },
 			{ x: 0, y: 0 }
@@ -38,10 +40,15 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
     return [
-			{ x: 0, y: 0 },
-			{ x: 0, y: 0 }
+			{ x: 0, y: tf - 2 * c },
+			{ x: d / 2 + c, y: tf - 2 * c },
+			{ x: d / 2 + c, y: h - tf },
+			{ x: -d / 2 - c, y: h - tf },
+			{ x: -d / 2 - c, y: tf - 2 * c },
+			{ x: 0, y: tf - 2 * c }
 		];
   }
   
@@ -60,8 +67,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return 2 * (tf - 2 * c) * (b - 2 * c) + (h - 2 * (tf - c)) * (tw - 2 * c);
+    return 2 * (tf - 2 * c) * (b - 2 * c) + 2 * (h - 2 * (tf - c)) * (tw - 2 * c);
   }
 
   get Av() {
@@ -69,8 +77,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return 2 * (tf - 2 * c) * (b - 2 * c) + (h - 2 * (tf - c)) * (tw - 2 * c) - 2 * (b - 2 * c) * (tf - 2 * c);
+    return 2 * (tf - 2 * c) * (b - 2 * c) + 2 * (h - 2 * (tf - c)) * (tw - 2 * c) - 2 * (b - 2 * c) * (tf - 2 * c);
   }
 
   get Iy() {
@@ -78,8 +87,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return ((b - 2 * c) * ((h - 2 * c) ** 3) - (b - tw) * ((h - 2 * (tf - c)) ** 3)) / 12;
+    return (b - 2 * c) * ((h - 2 * c) ** 3) / 12 - (b - 2 * (tw - c)) * ((h - 2 * (tf - c)) ** 3) / 12;
   }
 
   get Iz() {
@@ -87,8 +97,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return (2 * (tf - 2 * c) * ((b - 2 * c) ** 3) + ((tw - 2 * c) ** 3) * (h - 2 * (tf - c))) / 12;
+    return (tf - 2 * c) * ((b - 2 * c) ** 3) / 6 + 2 * ((h - 2 * (tf - c)) * ((tw - 2 * c) ** 3) + (h - 2 * (tf - c)) * (tw - 2 * c) * ((d / 2 + tw / 2) ** 2));
   }
 
   get Iyz() {
@@ -101,8 +112,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return (2 * (b - 2 * c) * ((tf - 2 * c) ** 3) + ((tw - 2 * c) ** 3) * (h - 2 * (tf - c))) / 3;
+    return 2 * (tf - 2 * c) * (tw - 2 * c) * ((d + tw) ** 2) * ((h - tf) ** 2) / ((tw - 2 * c) * (d + tw) + (tf - 2 * c) * (h - tf));
   }
 
 	get Iw() {
@@ -110,8 +122,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return (2 * (tf - 2 * c) * ((b - 2 * c) ** 3) + ((tw - 2 * c) ** 3) * (h - 2 * (tf - c))) / 48 * ((h - tf) ** 2);
+    return (tf - 2 * c) * ((b - 2 * c) ** 3) * ((h - tf) ** 2) / 24 + (tw - 2 * c) * ((d + tw) ** 2) * ((h - 2 * (tf - c)) ** 3) / 24;
 	}
 	
   get Wely() {
@@ -119,8 +132,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return ((b - 2 * c) * ((h - 2 * c) ** 3) - (b - tw) * ((h - 2 * (tf - c)) ** 3)) / (6 * (h - 2 * c));
+    return  2 * ((b - 2 * c) * ((h - 2 * c) ** 3) / 12 - (b - 2 * (tw - c)) * ((h - 2 * (tf - c)) ** 3) / 12) / (h - 2 * c);
   }
 
   get Welz() {
@@ -128,8 +142,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return (2 * (tf - 2 * c) * ((b - 2 * c) ** 3) + ((tw - 2 * c) ** 3) * (h - 2 * (tf - c))) / (6 * (b - 2 * c));
+    return 2 * ((tf - 2 * c) * ((b - 2 * c) ** 3) / 6 + 2 * ((h - 2 * (tf - c)) * ((tw - 2 * c) ** 3) + (h - 2 * (tf - c)) * (tw - 2 * c) * ((d / 2 + tw / 2) ** 2))) / (b - 2 * c);
   }
 
   get Wply() {
@@ -137,8 +152,9 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return ((tw - 2 * c) * ((h - 2 * c) ** 2)) / 4 + (tf - 2 * c) * (h - tf) * (b - tw);
+    return (tw - 2 * c) * ((h - 2 * c) ** 2) / 2 + (tf - 2 * c) * (h - tf) * (b - 2 * (tw - c));
   }
 
   get Wplz() {
@@ -146,9 +162,10 @@ class ISection {
 		const tw = Number(this.tw);
 		const b = Number(this.b);
 		const h = Number(this.h);
+		const d = Number(this.d);
 		const c = Number(this.c);
-    return ((b - 2 * c) ** 2) * (tf - 2 * c) / 2 + (h - 2 * (tf - c)) * ((tw - 2 * c) ** 2) / 4;
+    return (tf - 2 * c) * ((b - 2 * c) ** 2) / 2 + (tw - 2 * c) * (h - 2 * (tf - c)) * (d + tw);
   }
 }
 
-module.exports = ISection;
+module.exports = BoxSection;

@@ -1,9 +1,9 @@
 const CustomSection = require('./CustomSection');
 
 class RectangularSection {
-  constructor(height, width) {
-    this.h = height;
-    this.b = width;
+  constructor({ h, b }) {
+    this.h = h;
+    this.b = b;
   }
   
   get sectionext() {
@@ -25,34 +25,33 @@ class RectangularSection {
     ]
   }
   
-  get xg() {
-    const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
-    return SectionCharac.xg;
+  get yg() {
+    return b / 2;
   }
 
-  get yg() {
+  get zg() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.yg;
   }
 
-  get area() {
+  get A() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.area;
   }
 
-  get ixx() {
+  get Iy() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
-    return SectionCharac.ixx;
+    return SectionCharac.ixx.IxxG;
   }
 
-  get iyy() {
+  get Iz() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
-    return SectionCharac.iyy;
+    return SectionCharac.iyy.IyyG;
   }
 
-  get ixy() {
+  get Ixy() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
-    return SectionCharac.ixy;
+    return SectionCharac.ixy.IxyG;
   }
 }
 

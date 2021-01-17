@@ -1,9 +1,9 @@
 const CustomSection = require('./CustomSection');
 
 class CircularHollowSection {
-  constructor(diameter, thickness) {
-    this.D = diameter;
-    this.t = thickness;
+  constructor({ D, t }) {
+    this.D = D;
+    this.t = t;
   }
   
   get sectionext() {
@@ -30,17 +30,17 @@ class CircularHollowSection {
     return arrInt;
   }
   
-  get xg() {
+  get yg() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.xg;
   }
 
-  get yg() {
+  get zg() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.yg;
   }
 
-  get area() {
+  get A() {
     const D = Number(this.D);
     const t = Number(this.t);
     const Pi = Math.PI;
@@ -49,13 +49,13 @@ class CircularHollowSection {
   }
 
   get Av() {
-    const A = this.area;
+    const A = this.A;
     const Pi = Math.PI;
 
     return 2*A/Pi;
   }
 
-  get ixx() {
+  get Iy() {
     const D = this.D;
     const t = this.t;
     const Pi = Math.PI;
@@ -63,7 +63,7 @@ class CircularHollowSection {
     return Pi/4*((D/2)**4 - (D/2-t)**4);
   }
 
-  get iyy() {
+  get Iz() {
     const D = this.D;
     const t = this.t;
     const Pi = Math.PI;
@@ -71,33 +71,47 @@ class CircularHollowSection {
     return Pi/4*((D/2)**4 - (D/2-t)**4);
   }
 
-  get ixy() {
-    const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
-    return SectionCharac.ixy;
+  get Iyz() {
+    const D = this.D;
+    const t = this.t;
+    const Pi = Math.PI;
+    return Pi/2*((D/2)**4 - (D/2-t)**4);
   }
 
-  get Welx() {
-    const ixx = this.ixx;
+  get It() {
     const D = this.D;
+    const t = this.t;
+    const Pi = Math.PI;
 
-    return ixx / (D/2);
+    return Pi/4*((D/2)**4 - (D/2-t)**4);
+  }
+
+  get Iw() {
+    return 0;
   }
 
   get Wely() {
-    const iyy = this.iyy;
+    const Iy = this.Iy;
     const D = this.D;
 
-    return iyy / (D/2);
+    return Iy / (D/2);
   }
 
-  get Wplx() {
+  get Welz() {
+    const Iz = this.Iz;
+    const D = this.D;
+
+    return Iz / (D/2);
+  }
+
+  get Wply() {
     const D = this.D;
     const t = this.t;
 
     return 4/3*((D/2)**3-(D/2-t)**3);
   }
 
-  get Wply() {
+  get Wplz() {
     const D = this.D;
     const t = this.t;
 
