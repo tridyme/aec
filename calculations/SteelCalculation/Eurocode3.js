@@ -33,6 +33,59 @@ class Eurocode3 {
     };
   }
 
+  get steelAnalysis() {
+    return {
+      yg: this.sectionData.yg,
+      zg: this.sectionData.zg,
+      A: this.sectionData.A,
+      Av: this.sectionData.Av,
+      Iy: this.sectionData.Iy,
+      Iz: this.sectionData.Iz,
+      It: this.sectionData.It,
+      Wely: this.sectionData.Wely,
+      Welz: this.sectionData.Welz,
+      Wply: this.sectionData.Wply,
+      Wplz: this.sectionData.Wplz,
+      alphay: this.alphay(),
+      alphaz: this.alphaz(),
+      Ncry: this.Ncry(),
+      Ncrz: this.Ncrz(),
+      lambday: this.lambday(),
+      lambdaz: this.lambdaz(),
+      phiy: this.phiy(),
+      phiz: this.phiz(),
+      ksiy: this.ksiy(),
+      ksiz: this.ksiz(),
+      alphaLT: this.alphaLT(),
+      Mcr: this.Mcr(),
+      lambdaLT: this.lambdaLT(),
+      phiLT: this.phiLT(),
+      ksiLT: this.ksiLT(),
+      Cmy0: this.Cmy0(),
+      Cmz0: this.Cmz0(),
+      CmLT: this.CmLT(),
+      VplRd: this.VplRd(),
+      SFShear: this.SFShear(),
+      UnMoinsRho: this.UnMoinsRho(),
+      Tt: this.Tt(),
+      Am: this.Am(),
+      thotweb: this.thotweb(),
+      NplRd: this.NplRd(),
+      MelyRd: this.MelyRd(),
+      MelzRd: this.MelzRd(),
+      MplyRd: this.MplyRd(),
+      MplzRd: this.MplzRd(),
+      kyy: this.kyy(),
+      kzz: this.kzz(),
+      kyz: this.kyz(),
+      kzy: this.kzy(),
+      SFBucklingy: this.SFBucklingy(),
+      SFBucklingz: this.SFBucklingz(),
+      SFTension: this.SFTension(),
+      SFAxialBending: this.SFAxialBending(),
+
+    }
+  }
   // Classification of cross section
   class() {
     const {

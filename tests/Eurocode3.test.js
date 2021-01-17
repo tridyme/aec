@@ -50,8 +50,9 @@ describe('Eurocode 3 tests', () => {
 		}
 		const sectionType = section.sectionTypes;
 		const sectionCharac = new Eurocode3({ geometry, material, loads, sectionType });
+		console.log('STEEL ANALYSIS', sectionCharac.steelAnalysis);
     describe(`${section.sectionName}: Section Properties`, ()=> {
-      describe('yg', ()=> {
+			describe('yg', ()=> {
         assert.isBelow(ecart(sectionCharac.sectionData.yg, section.yg), tolerance);
       });
       describe('zg', ()=> {
