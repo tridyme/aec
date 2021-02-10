@@ -91,14 +91,15 @@ class Eurocode3 {
     const {
       fyk
      } = this.material;
+    const classe = this.geometry.class;
     const limitClass2 = 70 * 235 / fyk;
     const limitClass3 = 90 * 235 / fyk;
     switch (this.sectionType) {
       case 'ISection': { 
-        return 2;
+        return classe? classe: 2;
       }
       case 'BoxSection': { 
-        return 2;
+        return classe? classe: 2;
       }
       case 'CircularHollowSection': { 
         const {
@@ -107,15 +108,15 @@ class Eurocode3 {
         } = this.geometry;
         const dOnT = D / t;
         if(dOnT > limitClass3) {
-          return 4;
+          return classe? classe: 4;
         } else if(dOnT < limitClass2) {
-          return 2;
+          return classe? classe: 2;
         } else {
-          return 3;
+          return classe? classe: 3;
         }
       }
       default:
-        return 2;
+        return classe? classe: 2;
     }
   }
 

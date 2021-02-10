@@ -1,5 +1,5 @@
 class Eurocode1 {
-	constructor(direction, velocityRef, site) {
+	constructor({ direction, velocityRef, site }) {
     this.teta = direction;
     this.vb0 = velocityRef;
     this.categorie = site;
@@ -35,14 +35,6 @@ class Eurocode1 {
         name: 'vb',
         text: 'vb',
         description: "Valeur de base de la vitesse de référence du vent à 10m",
-        unit: { name: 'm/s', text: 'm/s' },
-        code: "EN 1991-1-4:2005",
-        reference: "4.2"
-      },
-      vb: {
-        name: 'vb',
-        text: 'vb',
-        description: "Valeur de base de la vitesse de référence du vent",
         unit: { name: 'm/s', text: 'm/s' },
         code: "EN 1991-1-4:2005",
         reference: "4.2"

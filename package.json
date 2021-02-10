@@ -1,9 +1,10 @@
 {
   "name": "@tridyme/aec",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "npm package for Architecture Engineering and Construction",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "mocha tests --timeout=3000",
     "coverage": "nyc npm run test",
     "lint": "eslint ./calculations --fix",
@@ -32,6 +33,9 @@
     "nyc": "^15.1.0"
   },
   "dependencies": {
-    "npmrc": "^1.1.1"
+    "nodemon": "^2.0.7",
+    "npmrc": "^1.1.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }

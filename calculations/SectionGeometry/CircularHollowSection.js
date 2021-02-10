@@ -6,6 +6,26 @@ class CircularHollowSection {
     this.t = t;
   }
   
+  get sectionAnalysis() {
+    return {
+      yg: this.yg,
+      zg: this.zg,
+      Ry: this.D / 2,
+      Rz: this.D / 2,
+      A: this.A,
+      Av: this.Av,
+      Iy: this.Iy,
+      Iz: this.Iz,
+      Iyz: this.Iyz,
+      It: this.It,
+      Iw: this.Iw,
+      Wely: this.Wely,
+      Welz: this.Welz,
+      Wply: this.Wply,
+      Wplz: this.Wplz
+    }
+  }
+
   get sectionext() {
 		const D = Number(this.D);
 		const t = Number(this.t);

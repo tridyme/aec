@@ -26,6 +26,7 @@ class RectangularSection {
   }
   
   get yg() {
+    const b = this.b;
     return b / 2;
   }
 
@@ -49,7 +50,7 @@ class RectangularSection {
     return SectionCharac.iyy.IyyG;
   }
 
-  get Ixy() {
+  get Iyz() {
     const SectionCharac = new CustomSection(this.sectionext, this.sectionint);
     return SectionCharac.ixy.IxyG;
   }
