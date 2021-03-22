@@ -1,7 +1,7 @@
-const SectionGeometry = require('../SectionGeometry');
+const SectionGeometry = require('../../SectionGeometry');
 
-class Eurocode3 {
-  constructor({ geometry, material, loads, sectionType}) {
+class Section {
+  constructor({ geometry, material, loads, sectionType }) {
     // GEOMETRY
     this.geometry = geometry;
     this.sectionType = sectionType;
@@ -13,27 +13,29 @@ class Eurocode3 {
     this.loads = loads;
   };
 
-  get sectionData() {
+  sectionData() {
     const geometry = this.geometry;
     const sectionType = this.sectionType;
+    // console.log('SECTION TYPE', sectionType);
+    // console.log('GEOMETRY', geometry);
     const secData = new SectionGeometry[`${sectionType}`](geometry);
     return {
-      yg: this.geometry.yg? this.geometry.yg: secData.yg,
-      zg: this.geometry.zg? this.geometry.zg: secData.zg,
-      A: this.geometry.A? this.geometry.A: secData.A,
-      Av: this.geometry.Av? this.geometry.Av: secData.Av,
-      Iy: this.geometry.Iy? this.geometry.Iy: secData.Iy,
-      Iz: this.geometry.Iz? this.geometry.Iz: secData.Iz,
-      It: this.geometry.It? this.geometry.It: secData.It,
-      Iw: this.geometry.Iw? this.geometry.Iw: secData.Iw,
-      Wely: this.geometry.Wely? this.geometry.Wely: secData.Wely,
-      Welz: this.geometry.Welz? this.geometry.Welz: secData.Welz,
-      Wply: this.geometry.Wply? this.geometry.Wply: secData.Wply,
-      Wplz: this.geometry.Wplz? this.geometry.Wplz: secData.Wplz,
+      yg: this.geometry.yg ? this.geometry.yg : secData.yg,
+      zg: this.geometry.zg ? this.geometry.zg : secData.zg,
+      A: this.geometry.A ? this.geometry.A : secData.A,
+      Av: this.geometry.Av ? this.geometry.Av : secData.Av,
+      Iy: this.geometry.Iy ? this.geometry.Iy : secData.Iy,
+      Iz: this.geometry.Iz ? this.geometry.Iz : secData.Iz,
+      It: this.geometry.It ? this.geometry.It : secData.It,
+      Iw: this.geometry.Iw ? this.geometry.Iw : secData.Iw,
+      Wely: this.geometry.Wely ? this.geometry.Wely : secData.Wely,
+      Welz: this.geometry.Welz ? this.geometry.Welz : secData.Welz,
+      Wply: this.geometry.Wply ? this.geometry.Wply : secData.Wply,
+      Wplz: this.geometry.Wplz ? this.geometry.Wplz : secData.Wplz,
     };
   }
 
-  get steelAnalysis() {
+  steelAnalysis() {
     return {
       yg: this.sectionData.yg,
       zg: this.sectionData.zg,
@@ -90,33 +92,33 @@ class Eurocode3 {
   class() {
     const {
       fyk
-     } = this.material;
+    } = this.material;
     const classe = this.geometry.class;
     const limitClass2 = 70 * 235 / fyk;
     const limitClass3 = 90 * 235 / fyk;
     switch (this.sectionType) {
-      case 'ISection': { 
-        return classe? classe: 2;
+      case 'ISection': {
+        return classe ? classe : 2;
       }
-      case 'BoxSection': { 
-        return classe? classe: 2;
+      case 'BoxSection': {
+        return classe ? classe : 2;
       }
-      case 'CircularHollowSection': { 
+      case 'CircularHollowSection': {
         const {
           D,
           t
         } = this.geometry;
         const dOnT = D / t;
-        if(dOnT > limitClass3) {
-          return classe? classe: 4;
-        } else if(dOnT < limitClass2) {
-          return classe? classe: 2;
+        if (dOnT > limitClass3) {
+          return classe ? classe : 4;
+        } else if (dOnT < limitClass2) {
+          return classe ? classe : 2;
         } else {
-          return classe? classe: 3;
+          return classe ? classe : 3;
         }
       }
       default:
-        return classe? classe: 2;
+        return classe ? classe : 2;
     }
   }
 
@@ -189,14 +191,14 @@ class Eurocode3 {
     const A = this.sectionData.A;
     const fyk = this.material.fyk;
     const Ncry = this.Ncry();
-    return (A * fyk * (10 ** 3) / Ncry)**(0.5);
+    return (A * fyk * (10 ** 3) / Ncry) ** (0.5);
   }
 
   lambdaz() {
     const A = this.sectionData.A;
     const fyk = this.material.fyk;
     const Ncrz = this.Ncrz();
-    return (A * fyk * (10 ** 3) / Ncrz)**(0.5);
+    return (A * fyk * (10 ** 3) / Ncrz) ** (0.5);
   }
 
   phiy() {
@@ -215,8 +217,8 @@ class Eurocode3 {
     const phiy = this.phiy();
     const lambday = this.lambday();
     const Ned = this.loads.Ned;
-    if(Ned > 0) {
-      return  Math.min(1 / (phiy + ((phiy ** 2) - (lambday ** 2))**(0.5)), 1);
+    if (Ned > 0) {
+      return Math.min(1 / (phiy + ((phiy ** 2) - (lambday ** 2)) ** (0.5)), 1);
     } else {
       return 1;
     }
@@ -226,11 +228,11 @@ class Eurocode3 {
     const phiz = this.phiz();
     const lambdaz = this.lambdaz();
     const Ned = this.loads.Ned;
-    if(Ned > 0) {
-      return  Math.min(1 / (phiz + ((phiz ** 2) - (lambdaz ** 2))**(0.5)), 1);
+    if (Ned > 0) {
+      return Math.min(1 / (phiz + ((phiz ** 2) - (lambdaz ** 2)) ** (0.5)), 1);
     } else {
       return 1;
-    }  
+    }
   }
 
   // Lateral Torsional Buckling
@@ -267,9 +269,9 @@ class Eurocode3 {
     const sectionType = this.sectionType;
     const C1 = this.geometry.C1;
     const C2 = this.geometry.C2;
-    if(sectionType === "ISection" || sectionType === "BoxSection") {
+    if (sectionType !== "CircularHollowSection") {
       const Iw = this.sectionData.Iw;
-      return C1 * (Math.PI ** 2) * Es * (10 ** 3) * Iz / (L ** 2)  * (Math.sqrt(Iw / Iz + (L ** 2) * G * It / ((Math.PI ** 2) * Es * Iz) + ((C2 * zg) ** 2)) - C2 * zg);
+      return C1 * (Math.PI ** 2) * Es * (10 ** 3) * Iz / (L ** 2) * (Math.sqrt(Iw / Iz + (L ** 2) * G * It / ((Math.PI ** 2) * Es * Iz) + ((C2 * zg) ** 2)) - C2 * zg);
     } else {
       return 0;
     }
@@ -280,7 +282,7 @@ class Eurocode3 {
     const Wely = this.sectionData.Wely;
     const Mcr = this.Mcr();
     const sectionType = this.sectionType;
-    if(sectionType === "ISection" || sectionType === "BoxSection") {
+    if (sectionType !== "CircularHollowSection") {
       return Math.sqrt(Wely * fyk * (10 ** 3) / Mcr);
     } else {
       return 0;
@@ -291,7 +293,7 @@ class Eurocode3 {
     const alphaLT = this.alphaLT();
     const lambdaLT = this.lambdaLT();
     const sectionType = this.sectionType;
-    if(sectionType === "ISection" || sectionType === "BoxSection") {
+    if (sectionType !== "CircularHollowSection") {
       return (1 + alphaLT * (lambdaLT - 0.2) + (lambdaLT ** 2)) / 2;
     } else {
       return 0;
@@ -302,27 +304,27 @@ class Eurocode3 {
     const phiLT = this.phiLT();
     const lambdaLT = this.lambdaLT();
     const sectionType = this.sectionType;
-    if(sectionType === "ISection" || sectionType === "BoxSection") {
+    if (sectionType !== "CircularHollowSection") {
       return Math.min(1 / (phiLT + Math.sqrt((phiLT ** 2) - (lambdaLT ** 2))), 1)
     } else {
       return 0;
     }
   }
 
-   // Moment factors
+  // Moment factors
   Cmy0() {
     const MDy = this.loads.MDy;
     const Ned = this.loads.Ned;
     const Es = this.material.Es;
     const L = this.geometry.L;
-    const Ncry = this.Ncry();
+    const Ncry = this.Ncry() === 0 ? 0.0000001 : this.Ncry();
     const Iy = this.sectionData.Iy;
     if (MDy === 1) {
       const psiy = this.loads.psiy;
       return 0.79 + 0.21 * psiy + 0.36 * (psiy - 0.33) * Math.max(0, Ned) / Ncry;
     }
     if (MDy === 2) {
-      const Myed = this.loads.Myed;
+      const Myed = this.loads.Myed === 0 ? 0.0000001 : this.loads.Myed;
       const deltay = this.loads.deltay;
       return 1 + ((Math.PI ** 2) * Es * Iy * deltay / ((L ** 2) * Myed) - 1) * Math.max(0, Ned) / Ncry;
     }
@@ -339,14 +341,14 @@ class Eurocode3 {
     const Ned = this.loads.Ned;
     const Es = this.material.Es;
     const L = this.geometry.L;
-    const Ncrz = this.Ncrz();
+    const Ncrz = this.Ncrz() === 0 ? 0.0000001 : this.Ncrz();
     const Iz = this.sectionData.Iz;
     if (MDz === 1) {
       const psiz = this.loads.psiz;
       return 0.79 + 0.21 * psiz + 0.36 * (psiz - 0.33) * Math.max(0, Ned) / Ncrz;
     }
     if (MDz === 2) {
-      const Mzed = this.loads.Mzed;
+      const Mzed = this.loads.Mzed === 0 ? 0.0000001 : this.loads.Mzed;
       const deltaz = this.loads.deltaz;
       return 1 + ((Math.PI ** 2) * Es * Iz * deltaz / ((L ** 2) * Mzed) - 1) * Math.max(0, Ned) / Ncrz;
     }
@@ -427,7 +429,7 @@ class Eurocode3 {
 
   // Axial & Bending
 
-  NplRd () {
+  NplRd() {
     const Ned = this.loads.Ned;
     const A = this.sectionData.A;
     const UnMoinsRho = this.UnMoinsRho();
@@ -516,8 +518,8 @@ class Eurocode3 {
     const lambday = this.lambday();
     const NplRd = this.NplRd();
     const classe = this.class();
-    if(sectionType === "CircularHollowSection" && classe < 3) {
-      return Math.max( 1 + (wy - 1) * (2 - 1.6 / wy * Cmy0**(2) * (lambday + lambday**2)) * Ned / NplRd , Wely / Wply);
+    if (sectionType === "CircularHollowSection" && classe < 3) {
+      return Math.max(1 + (wy - 1) * (2 - 1.6 / wy * Cmy0 ** (2) * (lambday + lambday ** 2)) * Ned / NplRd, Wely / Wply);
     } else if (sectionType === "CircularHollowSection" && classe === 3) {
       return 1;
     } else {
@@ -537,8 +539,8 @@ class Eurocode3 {
     const lambdaz = this.lambdaz();
     const NplRd = this.NplRd();
     const classe = this.class();
-    if(sectionType === "CircularHollowSection" && classe < 3) {
-      return Math.max( 1+(wz-1)*(2-1.6/wz * Cmz0**(2)*(lambdaz+lambdaz**2))*Ned/NplRd,Welz / Wplz);
+    if (sectionType === "CircularHollowSection" && classe < 3) {
+      return Math.max(1 + (wz - 1) * (2 - 1.6 / wz * Cmz0 ** (2) * (lambdaz + lambdaz ** 2)) * Ned / NplRd, Welz / Wplz);
     } else if (sectionType === "CircularHollowSection" && classe === 3) {
       return 1;
     } else {
@@ -560,8 +562,8 @@ class Eurocode3 {
     const NplRd = this.NplRd();
     const classe = this.class();
     const sectionType = this.sectionType;
-    if(sectionType === "CircularHollowSection" && classe < 3) {
-      return Math.max( 1+(wz-1)*(2-14/(wz**5) * Cmz0**(2)*(lambdaz**2))*Ned/NplRd, (wz / wy)**(0.5) * Welz / Wplz);
+    if (sectionType === "CircularHollowSection" && classe < 3) {
+      return Math.max(1 + (wz - 1) * (2 - 14 / (wz ** 5) * Cmz0 ** (2) * (lambdaz ** 2)) * Ned / NplRd, (wz / wy) ** (0.5) * Welz / Wplz);
     } else if (sectionType === "CircularHollowSection" && classe === 3) {
       return 0.6;
     } else {
@@ -583,8 +585,8 @@ class Eurocode3 {
     const NplRd = this.NplRd();
     const classe = this.class();
     const sectionType = this.sectionType;
-    if(sectionType === "CircularHollowSection" && classe < 3) {
-      return Math.max( 1+(wy-1)*(2-14/(wy**5) * Cmy0**(2)*(lambday**2))*Ned/NplRd, (wy / wz)**(0.5) * Wely / Wply);
+    if (sectionType === "CircularHollowSection" && classe < 3) {
+      return Math.max(1 + (wy - 1) * (2 - 14 / (wy ** 5) * Cmy0 ** (2) * (lambday ** 2)) * Ned / NplRd, (wy / wz) ** (0.5) * Wely / Wply);
     } else if (sectionType === "CircularHollowSection" && classe === 3) {
       return 0.6;
     } else {
@@ -596,14 +598,14 @@ class Eurocode3 {
     const Ned = this.loads.Ned;
     const Ncry = this.Ncry();
     const ksiy = this.ksiy();
-    return ( 1 - Ned / Ncry ) / (1 - ksiy * Ned / Ncry);
+    return (1 - Ned / Ncry) / (1 - ksiy * Ned / Ncry);
   }
 
   muz() {
     const Ned = this.loads.Ned;
     const Ncrz = this.Ncrz();
     const ksiz = this.ksiz();
-    return ( 1 - Ned / Ncrz ) / (1 - ksiz * Ned / Ncrz);
+    return (1 - Ned / Ncrz) / (1 - ksiz * Ned / Ncrz);
   }
 
   SFBucklingy() {
@@ -626,28 +628,28 @@ class Eurocode3 {
     const kyz = this.kyz();
     const classe = this.class();
     const sectionType = this.sectionType;
-    if(sectionType === "CircularHollowSection") {
-      if(classe === 3) {
-        if( Ned < 0) {
+    if (sectionType === "CircularHollowSection") {
+      if (classe === 3) {
+        if (Ned < 0) {
           return 0;
         } else {
-          return Ned/(ksiy*NplRd)+muy*(Cmy0*Myed/((1-Ned/Ncry)*kyy*MelyRd)+0.6*Cmz0*Mzed/((1-Ned/Ncrz)*kyz*MelzRd));
+          return Ned / (ksiy * NplRd) + muy * (Cmy0 * Myed / ((1 - Ned / Ncry) * kyy * MelyRd) + 0.6 * Cmz0 * Mzed / ((1 - Ned / Ncrz) * kyz * MelzRd));
         }
       } else {
-        if( Ned < 0) {
+        if (Ned < 0) {
           return 0;
         } else {
-          return Ned/(ksiy*NplRd)+muy*(Cmy0*Myed/((1-Ned/Ncry)*kyy*MplyRd)+0.6*Cmz0*Mzed/((1-Ned/Ncrz)*kyz*MplzRd));
+          return Ned / (ksiy * NplRd) + muy * (Cmy0 * Myed / ((1 - Ned / Ncry) * kyy * MplyRd) + 0.6 * Cmz0 * Mzed / ((1 - Ned / Ncrz) * kyz * MplzRd));
         }
       }
     } else {
-      if(classe === 3) {
+      if (classe === 3) {
         return Math.max(Ned / (ksiy * NplRd) + kyy * Myed / (ksiLT * MelyRd) + kyz * Mzed / MelzRd, 0);
       } else {
         return Math.max(Ned / (ksiy * NplRd) + kyy * Myed / (ksiLT * MplyRd) + kyz * Mzed / MplzRd, 0);
       }
     }
-  } 
+  }
 
   SFBucklingz() {
     const Ned = this.loads.Ned;
@@ -670,22 +672,22 @@ class Eurocode3 {
     const kzy = this.kzy();
     const classe = this.class();
     const sectionType = this.sectionType;
-    if(sectionType === "CircularHollowSection") {
-      if(classe === 3) {
-        if( Ned < 0) {
+    if (sectionType === "CircularHollowSection") {
+      if (classe === 3) {
+        if (Ned < 0) {
           return 0;
         } else {
-          return Ned/(ksiz*NplRd)+muz*(0.6*Cmy0*Myed/((1-Ned/Ncry)*kzy*MelyRd)+Cmz0*Mzed/((1-Ned/Ncrz)*kzz*MelzRd));
+          return Ned / (ksiz * NplRd) + muz * (0.6 * Cmy0 * Myed / ((1 - Ned / Ncry) * kzy * MelyRd) + Cmz0 * Mzed / ((1 - Ned / Ncrz) * kzz * MelzRd));
         }
       } else {
-        if( Ned < 0) {
+        if (Ned < 0) {
           return 0;
         } else {
-          return Ned/(ksiz*NplRd)+muz*(0.6*Cmy0*Myed/((1-Ned/Ncry)*kzy*MplyRd)+Cmz0*Mzed/((1-Ned/Ncrz)*kzz*MplzRd));
+          return Ned / (ksiz * NplRd) + muz * (0.6 * Cmy0 * Myed / ((1 - Ned / Ncry) * kzy * MplyRd) + Cmz0 * Mzed / ((1 - Ned / Ncrz) * kzz * MplzRd));
         }
       }
     } else {
-      if(classe === 3) {
+      if (classe === 3) {
         return Math.max(Ned / (ksiz * NplRd) + kzy * Myed / (ksiLT * MelyRd) + kzz * Mzed / MelzRd, 0);
       } else {
         return Math.max(Ned / (ksiz * NplRd) + kzy * Myed / (ksiLT * MplyRd) + kzz * Mzed / MplzRd, 0);
@@ -706,14 +708,14 @@ class Eurocode3 {
     const gammaM1 = this.material.gammaM1;
     const classe = this.class();
     const sectionType = this.sectionType;
-    if(sectionType === "CircularHollowSection") {
-      if(classe === 3) {
-        return Math.sqrt(Myed**2+Mzed**2)/(MelyRd*gammaM1/gammaM0*(1-(Ned/NplRd*gammaM0/gammaM1)**2));
+    if (sectionType === "CircularHollowSection") {
+      if (classe === 3) {
+        return Math.sqrt(Myed ** 2 + Mzed ** 2) / (MelyRd * gammaM1 / gammaM0 * (1 - (Ned / NplRd * gammaM0 / gammaM1) ** 2));
       } else {
-        return Math.sqrt(Myed**2+Mzed**2)/(MplyRd*gammaM1/gammaM0*(1-(Ned/NplRd*gammaM0/gammaM1)**2));
+        return Math.sqrt(Myed ** 2 + Mzed ** 2) / (MplyRd * gammaM1 / gammaM0 * (1 - (Ned / NplRd * gammaM0 / gammaM1) ** 2));
       }
     } else {
-      if(classe === 3) {
+      if (classe === 3) {
         return Math.abs(Ned / NplRd - Myed / MelyRd - Mzed / MelzRd);
       } else {
         const prop1 = Myed / (MplyRd * (1 - ((Ned / NplRd) ** 2)));
@@ -730,37 +732,6 @@ class Eurocode3 {
     const SFTension = this.SFTension();
     return Math.max(SFBucklingy, SFBucklingz, SFTension);
   }
-}
+};
 
-
-module.exports = Eurocode3;
-
- // Classification of cross section
-  // class() {
-  //   const {
-  //     fyk
-  //    } = this.material;
-  //   const limitClass2 = 70 * 235 / fyk;
-  //   const limitClass3 = 90 * 235 / fyk;
-  //   switch (this.sectionType) {
-  //     case 'ISection': { }
-  //     case 'BoxSection': { }
-  //     case 'CircularHollowSection': { 
-  //       const {
-  //         D,
-  //         t
-  //       } = this.geometry;
-  //       const dOnT = D / t;
-  //       if(dOnT > limitClass3) {
-  //         return 4;
-  //       } else if(dOnT < limitClass2) {
-  //         return 2;
-  //       } else {
-  //         return 3;
-  //       }
-  //     }
-  //     default:
-  //       return 2;
-  //   }
-  // }
-
+module.exports = Section;
