@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Assemblage 1",
+    "a": 1,
+    "b": 2,
+    "FtRd": 3,
+    "FvRd": 1
+  },
+  {
+    "name": "Assemblage 2",
+    "a": 2,
+    "b": 2,
+    "FtRd": 4,
+    "FvRd": 0
+  },
+  {
+    "name": "Assemblage 3",
+    "a": 2,
+    "b": 3,
+    "FtRd": 5,
+    "FvRd": 1
+  }
+]

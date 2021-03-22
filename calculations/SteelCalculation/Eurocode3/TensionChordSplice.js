@@ -6,25 +6,20 @@ class TensionChordSplice {
   // Résistance en traction d'une crosse
   FtRd() {
     const {
-      As,
-      fub,
-      gammaM2,
-      betaAnc
+      a,
+      b
     } = this.initialState;
-    return betaAnc * 0.9 * fub * As / gammaM2 / 1000;
+    return a + b;
   }
 
   // Résistance en traction d'une crosse
-  FtRd1() {
+  FvRd() {
     const {
-      As,
-      fub,
-      gammaM2,
-      betaAnc
+      a,
+      b
     } = this.initialState;
-    return betaAnc * 0.9 * fub * As / gammaM2 / 1000;
+    return b - a;
   }
-
 
 };
 
