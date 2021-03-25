@@ -1,4 +1,4 @@
-const {
+/* const {
   assert,
   ecart,
   tolerance
@@ -209,4 +209,4 @@ describe('Eurocode 3 tests', () => {
 			});
     })
   })
-})
+}) */
