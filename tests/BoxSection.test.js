@@ -1,4 +1,4 @@
-const {
+/* const {
   assert,
   ecart,
   tolerance
@@ -48,4 +48,4 @@ describe('Box Section Data tests', () => {
       })
     })
   })
-})
+}) */

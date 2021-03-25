@@ -1,4 +1,4 @@
-const {
+/* const {
   assert,
   ecart,
   tolerance
@@ -21,4 +21,4 @@ describe('Circular Section Data tests', () => {
       })
     })
   })
-})
+}) */

@@ -1,4 +1,4 @@
-const SectionGeometry = require('../../SectionGeometry');
+/* const SectionGeometry = require('../../SectionGeometry');
 
 class Section {
   constructor({ geometry, material, loads, sectionType }) {
@@ -734,4 +734,4 @@ class Section {
   }
 };
 
-module.exports = Section;
+module.exports = Section; */

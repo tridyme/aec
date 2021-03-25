@@ -12,7 +12,6 @@ class TensionChordSplice {
       alphad: this.alphad(),
       alphab: this.alphab(),
       k1: this.k1(),
-      k2: this.k2(),
       FpC: this.FpC(),
       FsRd: this.FsRd(),
       FtRd: this.FtRd(),
@@ -22,7 +21,6 @@ class TensionChordSplice {
       Leffcp: this.Leffcp(),
       Leffnc: this.Leffnc(),
       Leff1: this.Leff1(),
-      tf: this.tf(),
       Mpl1Rd: this.Mpl1Rd(),
       FT1Rd: this.FT1Rd(),
       Leff2: this.Leff2(),
@@ -115,16 +113,7 @@ class TensionChordSplice {
       d0,
       e2
     } = this.initialState;
-    return MIN(2.8 * e2 / d0 - 1.7, 2.5)
-  }
-
-  //Facteur de forme de tête de vis
-  k2() {
-    const {
-      d0,
-      e2
-    } = this.initialState;
-    return MIN(2.8 * e2 / d0 - 1.7, 2.5);
+    return Math.min(2.8 * e2 / d0 - 1.7, 2.5)
   }
 
   //Effort de précontrainte
@@ -153,24 +142,21 @@ class TensionChordSplice {
     const {
       fub,
       gammaM2,
+      k2,
       As
     } = this.initialState;
-    const k2 = this.k2();
     return k2 * fub * As / gammaM2;
   }
 
   //Résistance au cisaillement
   FvRd() {
     const {
-      kb,
-      d,
-      t,
+      alphav,
+      fub,
+      As,
       gammaM2
     } = this.initialState;
-    const alphab = this.alpphab();
-    const k1 = this.k1();
-    const fu = this.fu();
-    return kb * alphab * k1 * fu * d * t / gammaM2;
+    return alphav * fub * As / gammaM2;
   }
 
   //Résistance à la pression diamétrale
@@ -182,7 +168,7 @@ class TensionChordSplice {
       d,
       t,
       gammaM2
-    } = this.inisialState;
+    } = this.initialState;
     const fu = this.fu();
     return kb * alphab * k1 * fu * d * t / gammaM2;
   }
@@ -232,12 +218,12 @@ class TensionChordSplice {
   //Moment résistant plastique 1
   Mpl1Rd() {
     const {
-      tf,
+      eFlange,
       fy,
       gammaM0
     } = this.initialState;
     const Leff1 = this.Leff1();
-    return (Leff1 * tf ** 2 * fy) / (4 * gammaM0);
+    return (Leff1 * eFlange ** 2 * fy) / (4 * gammaM0);
   }
 
   //Effort résistant en mode 1 
@@ -258,12 +244,12 @@ class TensionChordSplice {
   //Moment résistant plastique en mode 2
   Mpl2Rd() {
     const {
-      tf,
+      eFlange,
       fy,
       gammaM0
     } = this.initialState;
     const Leff2 = this.Leff2();
-    return (Leff2 * tf ** 2 * fy) / (4 * gammaM0);
+    return (Leff2 * eFlange ** 2 * fy) / (4 * gammaM0);
   }
 
   //n
@@ -281,7 +267,7 @@ class TensionChordSplice {
       numberBolts,
       m
     } = this.initialState;
-    const Mpl2Rd = ths.Mpl2Rd();
+    const Mpl2Rd = this.Mpl2Rd();
     const n = this.n();
     const FtRd = this.FtRd();
     return (2 * Mpl2Rd + n * numberBolts * FtRd) / (m + n);
