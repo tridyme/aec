@@ -193,7 +193,7 @@ class TensionChordSplice {
       e1
     } = this.initialState;
     const Pi = Math.PI;
-    return Math.min(2 * Pi * m, Pi * m * p1, Pi * m + 2 * e1);
+    return Math.min(2 * Pi * m, Pi * m + p1, Pi * m + 2 * e1);
   }
 
   //Longueur efficace des modes non circulaires

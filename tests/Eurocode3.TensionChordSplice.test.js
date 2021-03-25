@@ -21,7 +21,7 @@ describe('Eurocode 3 TensionChordSplice tests', () => {
 			describe('Fpv', ()=> {
 				assert.isBelow(ecart(assemblyCalculation.Fpv(), assembly.Fpv), tolerance);
 			});
-			describe('fu', ()=> {
+			describe('fuRed', ()=> {
 				assert.isBelow(ecart(assemblyCalculation.fu(), assembly.fu), tolerance);
 			});
 			describe('alphad', ()=> {
