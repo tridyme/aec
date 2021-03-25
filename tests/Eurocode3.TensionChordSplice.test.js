@@ -1,53 +1,56 @@
 const {
-  assert,
-  ecart,
-  tolerance
+	assert,
+	ecart,
+	tolerance
 } = require('./Setup.test');
 const { Eurocode3 } = require('../calculations/SteelCalculation');
 const cases = require('./mocks/eurocode3_tension_chord_splice_cases.json');
 
 describe('Eurocode 3 TensionChordSplice tests', () => {
 	cases.map(assembly => {
-		const initialState = {
-			As: assembly.As,
-			fyb : assembly.fyb,
-			ftmax: assembly.ftmax,
-			ffmax:assembly.ffmax,
-			p: assembly.p,
-			d: assembly.d,
-			dm: assembly.dm,
-			ks: assembly.ks,
-			ftmin: assembly.ftmin,
-			gammaM3: assembly.gammaM3,
-			FtEd: assembly.FtEd,
-			fy: assembly.fy,
-			fu: assembly.fu,
-			steelQualityClass: assembly.steelQualityClass,
-			d0: assembly.d0,
-			e1: assembly.e1,
-			fub: assembly.fub,
-			e2: assembly.e2,
-			gammaM2: assembly.gammaM2,
-			kb: assembly.kb,
-			t: assembly.t,
-			alphab: assembly.alphab,
-			k1: assembly.k1,
-			m: assembly.m,
-			p1: aassembly.p1,
-			p2: assembly.p2,
-			e: assembly.e,
-			D: assembly.D,
-			tf: assembly.tf,
-			gammaM0: assembly.gammaM0,
-			numberBolts: assembly.numberBolts,
-			DFlange: assembly.DFlange,
-			eFlange: assembly.eFlange,
-			FvEd: assembly.FvEd
-		}
-		const assemblyCalculation = new Eurocode3.TensionChordSplice({ intialState });
+		// const initialState = {
+		// 	As: assembly.As,
+		// 	fyb: assembly.fyb,
+		// 	ftmax: assembly.ftmax,
+		// 	ffmax: assembly.ffmax,
+		// 	p: assembly.p,
+		// 	d: assembly.d,
+		// 	dm: assembly.dm,
+		// 	ks: assembly.ks,
+		// 	ftmin: assembly.ftmin,
+		// 	gammaM3: assembly.gammaM3,
+		// 	FtEd: assembly.FtEd,
+		// 	fy: assembly.fy,
+		// 	fu: assembly.fu,
+		// 	steelQualityClass: assembly.steelQualityClass,
+		// 	d0: assembly.d0,
+		// 	e1: assembly.e1,
+		// 	fub: assembly.fub,
+		// 	e2: assembly.e2,
+		// 	gammaM2: assembly.gammaM2,
+		// 	kb: assembly.kb,
+		// 	t: assembly.t,
+		// 	alphab: assembly.alphab,
+		// 	k1: assembly.k1,
+		// 	m: assembly.m,
+		// 	p1: assembly.p1,
+		// 	p2: assembly.p2,
+		// 	e: assembly.e,
+		// 	D: assembly.D,
+		// 	tf: assembly.tf,
+		// 	gammaM0: assembly.gammaM0,
+		// 	numberBolts: assembly.numberBolts,
+		// 	DFlange: assembly.DFlange,
+		// 	eFlange: assembly.eFlange,
+		// 	FvEd: assembly.FvEd
+		// }
+
+		const initialState = { ...assembly };
+
+		const assemblyCalculation = new Eurocode3.TensionChordSplice({ initialState });
 		console.log('STEEL ANALYSIS', assemblyCalculation.steelAnalysis);
-		describe(`${assembly.name}: assembly check`, ()=> {
-			describe('Csgrais', ()=> {
+		describe(`${assembly.name}: assembly check`, () => {
+			describe('Csgrais', () => {
 				assert.isBelow(ecart(assemblyCalculation.Csgrais(), assembly.Csgrais), tolerance);
 			});
 			/*

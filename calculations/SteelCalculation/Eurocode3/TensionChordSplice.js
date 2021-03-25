@@ -47,8 +47,7 @@ class TensionChordSplice {
       fyb,
     } = this.initialState;
     const Pi = Math.PI;
-    const sqrt = Math.sqrt();
-    return fyb/(2*sqrt(3*Pi))*(As**(3/2))/1000;
+    return fyb / (2 * (3 * Pi) ** (1 / 2)) * (As ** (3 / 2)) / 1000;
   }
 
   // Effort de serrage, précontrainte de montage
@@ -62,9 +61,9 @@ class TensionChordSplice {
     } = this.initialState;
     const Pi = Math.PI;
     const Csgrais = this.Csgrais();
-    return Csgrais/((p/(2*Pi)+1.166*d/2*ffmax+dm/2*ftmax)/1000);
+    return Csgrais / ((p / (2 * Pi) + 1.166 * d / 2 * ffmax + dm / 2 * ftmax) / 1000);
   }
-  
+
   // Effort tangentiel induit
   Fpv() {
     const {
@@ -74,32 +73,32 @@ class TensionChordSplice {
       FtEd
     } = this.initialState;
     const Fpt = this.Fpt();
-    return ks*ftmin*(Fpt-0.8*FtEd)/gammaM3;
+    return ks * ftmin * (Fpt - 0.8 * FtEd) / gammaM3;
   }
-  
+
   // Contrainte de rupture équivalente
   fu() {
     const {
       fy,
       fu,
-      steelQualityClass 
+      steelQualityClass
     } = this.initialState;
-    if (steelQualityClass === ('inox 50' || 'inox 70' || 'inox 80' )) {
+    if (steelQualityClass === ('inox 50' || 'inox 70' || 'inox 80')) {
       return 0.5 * fy + 0.6 * fu;
     } else {
       return fu;
     }
   }
-  
+
   // Facteur de forme en pression diamétrale
   alphad() {
     const {
       d0,
       e1
     } = this.initialState;
-    return e1 / ( 3 * d0 );
-  }  
-  
+    return e1 / (3 * d0);
+  }
+
   //Facteur de forme longitudinal
   alphab() {
     const {
@@ -107,9 +106,9 @@ class TensionChordSplice {
     } = this.initialState;
     const fu = this.fu();
     const alphad = this.alphad();
-    return Math.min(alphad, fub/fu, 1);
+    return Math.min(alphad, fub / fu, 1);
   }
-  
+
   //Facteur de forme transversal
   k1() {
     const {
@@ -118,25 +117,25 @@ class TensionChordSplice {
     } = this.initialState;
     return MIN(2.8 * e2 / d0 - 1.7, 2.5)
   }
-  
+
   //Facteur de forme de tête de vis
   k2() {
     const {
       d0,
       e2
     } = this.initialState;
-    return MIN(2.8*e2/d0 - 1.7, 2.5);
+    return MIN(2.8 * e2 / d0 - 1.7, 2.5);
   }
-  
+
   //Effort de précontrainte
   FpC() {
     const {
       fub,
       As
     } = this.initialState;
-    return 0.7*fub*As;
+    return 0.7 * fub * As;
   }
-  
+
   //Résistance au glissement
   FsRd() {
     const {
@@ -146,22 +145,22 @@ class TensionChordSplice {
       gammaM3
     } = this.initialState;
     const FpC = this.FpC();
-    return ks*ftmin*(FpC - 0.8*FtEd)/gammaM3;
+    return ks * ftmin * (FpC - 0.8 * FtEd) / gammaM3;
   }
-  
+
   //Résistance à la traction
-  FtRd () {
+  FtRd() {
     const {
       fub,
       gammaM2,
       As
     } = this.initialState;
     const k2 = this.k2();
-    return k2*fub*As/gammaM2;
+    return k2 * fub * As / gammaM2;
   }
-  
+
   //Résistance au cisaillement
-  FvRd () {
+  FvRd() {
     const {
       kb,
       d,
@@ -169,13 +168,13 @@ class TensionChordSplice {
       gammaM2
     } = this.initialState;
     const alphab = this.alpphab();
-    const k1=this.k1();
+    const k1 = this.k1();
     const fu = this.fu();
-    return kb*alphab*k1*fu*d*t/gammaM2;
+    return kb * alphab * k1 * fu * d * t / gammaM2;
   }
-  
+
   //Résistance à la pression diamétrale
-  FbRd () {
+  FbRd() {
     const {
       kb,
       alphab,
@@ -185,11 +184,11 @@ class TensionChordSplice {
       gammaM2
     } = this.inisialState;
     const fu = this.fu();
-    return kb*alphab*k1*fu*d*t/gammaM2;
+    return kb * alphab * k1 * fu * d * t / gammaM2;
   }
-  
+
   //Résistance au poinçonnement 
-  FpRd () {
+  FpRd() {
     const {
       dm,
       t,
@@ -199,9 +198,9 @@ class TensionChordSplice {
     const Pi = Math.PI;
     return 0.6 * Pi * dm * t * fu / gammaM2;
   }
-  
+
   //Longueur efficace des modes circulaires
-  Leffcp () {
+  Leffcp() {
     const {
       m,
       p1,
@@ -210,9 +209,9 @@ class TensionChordSplice {
     const Pi = Math.PI;
     return Math.min(2 * Pi * m, Pi * m * p1, Pi * m + 2 * e1);
   }
-  
+
   //Longueur efficace des modes non circulaires
-  Leffnc () {
+  Leffnc() {
     const {
       m,
       e1,
@@ -220,16 +219,16 @@ class TensionChordSplice {
       e,
       D
     } = this.initialState
-    return Math.min(4 * m + 1.25 * e1, 2 * m + 0.625 * e1 + p1 / 2, 2 * m + 0.625 * e1 + e, D/2);
+    return Math.min(4 * m + 1.25 * e1, 2 * m + 0.625 * e1 + p1 / 2, 2 * m + 0.625 * e1 + e, D / 2);
   }
-  
+
   //La ongueur efficace en mode 1
-  Leff1 () {
+  Leff1() {
     const Leffcp = this.Leffcp();
     const Leffnc = this.Leffnc();
-    return Math.min (Leffcp, Leffnc);
+    return Math.min(Leffcp, Leffnc);
   }
-  
+
   //Moment résistant plastique 1
   Mpl1Rd() {
     const {
@@ -240,7 +239,7 @@ class TensionChordSplice {
     const Leff1 = this.Leff1();
     return (Leff1 * tf ** 2 * fy) / (4 * gammaM0);
   }
-  
+
   //Effort résistant en mode 1 
   FT1Rd() {
     const {
@@ -249,13 +248,13 @@ class TensionChordSplice {
     const Mpl1Rd = this.Mpl1Rd();
     return 4 * Mpl1Rd / m;
   }
-  
+
   // La ongueur efficace en mode 2
   Leff2() {
     const Leffnc = this.Leffnc();
     return Leffnc;
   }
-  
+
   //Moment résistant plastique en mode 2
   Mpl2Rd() {
     const {
@@ -266,7 +265,7 @@ class TensionChordSplice {
     const Leff2 = this.Leff2();
     return (Leff2 * tf ** 2 * fy) / (4 * gammaM0);
   }
-  
+
   //n
   n() {
     const {
@@ -275,7 +274,7 @@ class TensionChordSplice {
     } = this.initialState;
     return Math.min(e1, 1.25 * m);
   }
-  
+
   //Effort résistant en mode 2
   FT2Rd() {
     const {
@@ -287,7 +286,7 @@ class TensionChordSplice {
     const FtRd = this.FtRd();
     return (2 * Mpl2Rd + n * numberBolts * FtRd) / (m + n);
   }
-  
+
   //Effort résistant en mode 3
   FT3Rd() {
     const {
@@ -296,7 +295,7 @@ class TensionChordSplice {
     const FtRd = this.FtRd();
     return numberBolts * FtRd;
   }
-  
+
   //Effort résistant en mode 4
   FT4Rd() {
     const {
@@ -308,7 +307,7 @@ class TensionChordSplice {
     } = this.initialState;
     return (DFlange * ((eFlange + tf) / 2) * fy) / gammaM0;
   }
-  
+
   //Critère de résistance au cisaillement
   FS1() {
     const {
@@ -317,7 +316,7 @@ class TensionChordSplice {
     const FvRd = this.FvRd();
     return FvEd / FvRd;
   }
-  
+
   //Critère résistance à la pression diamétrale
   FS2() {
     const {
@@ -326,7 +325,7 @@ class TensionChordSplice {
     const FbRd = this.FbRd();
     return FvEd / FbRd;
   }
-  
+
   //Critère résistance traction simple
   FS3() {
     const {
@@ -335,7 +334,7 @@ class TensionChordSplice {
     const FtRd = this.FtRd();
     return FtEd / FtRd;
   }
-  
+
   //Critère résistance à la traction et au cisaillement
   FS4() {
     const {
@@ -346,7 +345,7 @@ class TensionChordSplice {
     const FtRd = this.FtRd();
     return FvEd / FvRd + FtEd / (1.4 * FtRd);
   }
-  
+
   //Critère résistance poinçonnement
   FS5() {
     const {
@@ -355,7 +354,7 @@ class TensionChordSplice {
     const FpRd = this.FpRd();
     return FtEd / FpRd;
   }
-  
+
   //Ratio
   FSmax() {
     const FS1 = this.FS1();
