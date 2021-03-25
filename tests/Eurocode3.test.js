@@ -6,34 +6,34 @@
 const { Eurocode3 } = require('../calculations/SteelCalculation');
 const cases = require('./mocks/eurocode3_cases.json');
 
-describe('Eurocode 3 tests', () => {
-  cases.map(section => {
-		const geometry = {
-			h: section.h,
-			b: section.b,
-			tw: section.tw,
-			tf: section.tf,
-			c: section.c,
-			d: section.d,
-			D: section.D,
-			t: section.t,
-			L: section.L,
-			Lcry: section.Lcry,
-			Lcrz: section.Lcrz,
-			bucklingCurvey: section.bucklingCurvey,
-			bucklingCurvez: section.bucklingCurvez,
-			bucklingCurveLT: section.bucklingCurveLT,
-			C1: section.C1,
-			C2: section.C2,
-			class: section.class
-		}
-		const material = {
-			Es: section.E,
-			fyk: section.fyk,
-			gammaM0: section.gammaM0,
-			gammaM1: section.gammaM1,
-			G: section.G
-		}
+// describe('Eurocode 3 tests', () => {
+//   cases.map(section => {
+// 		const geometry = {
+// 			h: section.h,
+// 			b: section.b,
+// 			tw: section.tw,
+// 			tf: section.tf,
+// 			c: section.c,
+// 			d: section.d,
+// 			D: section.D,
+// 			t: section.t,
+// 			L: section.L,
+// 			Lcry: section.Lcry,
+// 			Lcrz: section.Lcrz,
+// 			bucklingCurvey: section.bucklingCurvey,
+// 			bucklingCurvez: section.bucklingCurvez,
+// 			bucklingCurveLT: section.bucklingCurveLT,
+// 			C1: section.C1,
+// 			C2: section.C2,
+// 			class: section.class
+// 		}
+// 		const material = {
+// 			Es: section.E,
+// 			fyk: section.fyk,
+// 			gammaM0: section.gammaM0,
+// 			gammaM1: section.gammaM1,
+// 			G: section.G
+// 		}
 
 		const loads = {
 			Ned: section.Ned,
