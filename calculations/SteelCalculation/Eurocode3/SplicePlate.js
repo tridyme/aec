@@ -127,5 +127,5 @@ class SplicePlate {
     const Anet = this.Anet()
   }
 }
-module.exports = TensionChordSplice;
+module.exports = SplicePlate;
 
