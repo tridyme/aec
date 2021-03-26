@@ -11,7 +11,7 @@ class TensionChordSplice {
         text: 'FtEd',
         description: "Effort normal par boulon",
         unit: { name: 'N', text: 'N' }, // Unitée utilisée pour les calculs (important pour la suite quand on voudra intégré un système de conversion)
-        code: "EN 19913-1-8:2005", // Mettre le code associé si existe
+        code: "EN 1993-1-8:2005", // Mettre le code associé si existe
         reference: "4.2" // Mettre référence (chapitre) du code associé si existe
       },
       FvEd: {
@@ -19,7 +19,7 @@ class TensionChordSplice {
         text: 'FvEd',
         description: "Effort tranchant par boulon",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       numberBolts: {
@@ -27,8 +27,8 @@ class TensionChordSplice {
         text: 'numberBolts',
         description: "Nombre de boulons",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: " ", 
+        reference: " " 
       },
       steelQualityClass: {
         name: 'steelQualityClass', 
@@ -43,7 +43,7 @@ class TensionChordSplice {
         text: 't',
         description: "Epaisseur du plat assemblé",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       tp: {
@@ -51,7 +51,7 @@ class TensionChordSplice {
         text: 'tp',
         description: "Epaisseur de la plaque située sous la tête ou l’écrou",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       p1: {
@@ -59,7 +59,7 @@ class TensionChordSplice {
         text: 'p1',
         description: "Pince longitudinale",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       e1: {
@@ -67,7 +67,7 @@ class TensionChordSplice {
         text: 'e1',
         description: "Entraxe longitudinal",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       p2: {
@@ -75,7 +75,7 @@ class TensionChordSplice {
         text: 'p2',
         description: "Pince transversale",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       e2: {
@@ -83,7 +83,7 @@ class TensionChordSplice {
         text: 'e2',
         description: "Entraxe transversale",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       m: {
@@ -91,7 +91,7 @@ class TensionChordSplice {
         text: 'm',
         description: "Distance entre l'axe du boulon et l'âme",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       e: {
@@ -99,7 +99,7 @@ class TensionChordSplice {
         text: 'e',
         description: "Distance entre l'axe du boulon et l'extrimité de la platine",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       D: {
@@ -107,7 +107,7 @@ class TensionChordSplice {
         text: 'D',
         description: "Diamétre du tube",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       tf: {
@@ -115,7 +115,7 @@ class TensionChordSplice {
         text: 'tf',
         description: "Epaisseur du tube",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       DFlange: {
@@ -123,7 +123,7 @@ class TensionChordSplice {
         text: 'DFlange',
         description: "Diamétre extérieur du bride",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       eFlange: {
@@ -131,7 +131,7 @@ class TensionChordSplice {
         text: 'eFlange',
         description: "Epaisseur du bride",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       fy: {
@@ -139,7 +139,7 @@ class TensionChordSplice {
         text: 'fy',
         description: "Limite élastique des pièces assemblées",
         unit: { name: 'N/mm²', text: 'N/mm²' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       fu: {
@@ -147,23 +147,23 @@ class TensionChordSplice {
         text: 'fu',
         description: "Contrainte de rupture des pièces assemblées",
         unit: { name: 'N/mm²', text: 'N/mm²' }, 
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-4", 
+        reference: "2.1" 
       },
       fub: {
         name: 'fub', 
         text: 'fub',
         description: "Contrainte de rupture pour la classe",
         unit: { name: 'N/mm²', text: 'N/mm²' }, 
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-4", 
+        reference: "2.1" 
       },
       fyb: {
         name: 'fyb', 
         text: 'fyb',
         description: "Limite élastique pour la classe",
         unit: { name: 'N/mm²', text: 'N/mm²' }, 
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       gammaM0: {
@@ -171,87 +171,87 @@ class TensionChordSplice {
         text: 'gammaM0',
         description: "Facteur partiel de sécurité",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
       },
       gammaM2: {
         name: 'gammaM2', 
         text: 'gammaM2',
         description: "Coefficient partiel pour les assemblage boulonnés",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
       },
       gammaM3: {
         name: 'gammaM3', 
         text: 'gammaM3',
         description: "Coefficient partiel pour le glissement",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
       },
       ftmin: {
         name: 'ftmin', 
         text: 'ftmin',
         description: "Frottement minimal sous tête",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "VDI 2230", 
+        reference: " " 
       },
       ftmax: {
         name: 'ftmax', 
         text: 'ftmax',
         description: "Frottement maximal sous tête",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "VDI 2230", 
+        reference: " " 
       },
       ffmax: {
         name: 'ffmax', 
         text: 'ffmax',
         description: "Frottement filets de vis ",
         unit: { name: ' ', text: ' ' }, //Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "VDI 2230", 
+        reference: " " 
       },
       p: {
         name: 'p', 
         text: 'p',
         description: "Pas de vis",
         unit: { name: 'mm', text: 'mm' },
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "ISO 965", 
+        reference: " " 
       },
       d: {
         name: 'd', 
         text: 'd',
         description: "Diamètre nominal du boulon",
         unit: { name: 'mm', text: 'mm' },
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "ISO 965", 
+        reference: " " 
       },
       dm: {
         name: 'dm', 
         text: 'dm',
         description: "Diamètre moyen en appui",
         unit: { name: 'mm', text: 'mm' },
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "ISO 965", 
+        reference: " " 
       },
       ks: {
         name: 'ks', 
         text: 'ks',
         description: "Facteur de forme de trou en glissement",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "3.6" 
       },
       As: {
         name: 'As', 
         text: 'As',
         description: "Section nette du boulon",
         unit: { name: 'mm²', text: 'mm²' },
-        code: "EN 19913-1-8:2005", 
+        code: "EN 1993-1-8:2005", 
         reference: "4.2" 
       },
       d0: {
@@ -259,32 +259,32 @@ class TensionChordSplice {
         text: 'd0',
         description: "Diamètre perçage",
         unit: { name: 'mm', text: 'mm' },
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "ISO 4016", 
+        reference: " " 
       },
       alphav: {
         name: 'alphav', 
         text: 'alphav',
         description: "Facteur de forme au cisaillement",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
       },
       k2: {
         name: 'k2', 
         text: 'k2',
         description: "Facteur de forme de tête de vis",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
       },
       kb: {
         name: 'kb', 
         text: 'kb',
         description: "Facteur de forme de trou en pression diamétrale",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005", 
-        reference: "4.2" 
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
       },
 
       // Output
@@ -293,7 +293,7 @@ class TensionChordSplice {
         text: 'Csgrais',
         description: "Couple de serrage graissé",
         unit: { name: 'N.m', text: 'N.m' }, // Unitée utilisée pour les calculs (important pour la suite quand on voudra intégré un système de conversion)
-        code: "EN 19913-1-8:2005", // Mettre le code associé si existe
+        code: "EN 1993-1-8:2005", // Mettre le code associé si existe
         reference: "4.2" // Mettre référence (chapitre) du code associé si existe
       },
       Fpt: {
@@ -301,7 +301,7 @@ class TensionChordSplice {
         text: 'Fpt',
         description: "Effort de serrage, précontrainte de montage",
         unit: { name: 'N', text: 'N' },
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Fpv: {
@@ -309,7 +309,7 @@ class TensionChordSplice {
         text: 'Fpv',
         description: "Effort tangentiel induit",
         unit: { name: 'N', text: 'N' },
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
        alphad: {
@@ -317,31 +317,31 @@ class TensionChordSplice {
         text: 'alphad',
         description: "Facteur de forme en pression diamétrale",
         unit: { name: ' ', text: ' ' }, // Without unit 
-        code: "EN 19913-1-8:2005",
-        reference: "4.2"
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
       },
       alphab: {
         name: 'alphab',
         text: 'alphab',
         description: "Facteur de forme longitudinal",
         unit: { name: ' ', text: ' ' }, // Without unit 
-        code: "EN 19913-1-8:2005",
-        reference: "4.2"
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
       },
       k1: {
         name: 'k1',
         text: 'k1',
         description: "Facteur de forme transversal",
         unit: { name: ' ', text: ' ' }, // Without unit 
-        code: "EN 19913-1-8:2005",
-        reference: "4.2"
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
       },
       FpC: {
         name: 'FpC',
         text: 'FpC',
         description: "Effort de précontrainte",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FsRd: {
@@ -349,7 +349,7 @@ class TensionChordSplice {
         text: 'FsRd',
         description: "Résistance au glissement",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FtRd: {
@@ -357,7 +357,7 @@ class TensionChordSplice {
         text: 'FtRd',
         description: "Résistance à la traction",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FvRd: {
@@ -365,7 +365,7 @@ class TensionChordSplice {
         text: 'FvRd',
         description: "Résistance au cisaillement",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FbRd: {
@@ -373,7 +373,7 @@ class TensionChordSplice {
         text: 'FbRd',
         description: "Résistance à la pression diamétrale",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FpRd: {
@@ -381,7 +381,7 @@ class TensionChordSplice {
         text: 'FpRd',
         description: "Résistance au poinçonnement",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Leffcp: {
@@ -389,7 +389,7 @@ class TensionChordSplice {
         text: 'Leffcp',
         description: "Longueur efficace des modes circulaires",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Leffnc: {
@@ -397,7 +397,7 @@ class TensionChordSplice {
         text: 'Leffnc',
         description: "Longueur efficace des modes non circulaires",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Leff1: {
@@ -405,7 +405,7 @@ class TensionChordSplice {
         text: 'Leff1',
         description: "La ongueur efficace en mode 1",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Mpl1Rd: {
@@ -413,7 +413,7 @@ class TensionChordSplice {
         text: 'Mpl1Rd',
         description: "Moment résistant plastique ",
         unit: { name: 'N.mm', text: 'N.mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FT1Rd: {
@@ -421,7 +421,7 @@ class TensionChordSplice {
         text: 'FT1Rd',
         description: "Effort résistant en mode 1 ",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Leff2: {
@@ -429,7 +429,7 @@ class TensionChordSplice {
         text: 'Leff2',
         description: "La longueur efficace en mode 2",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       Mpl2Rd: {
@@ -437,7 +437,7 @@ class TensionChordSplice {
         text: 'Mpl2Rd',
         description: "Moment résistant plastique en mode 2",
         unit: { name: 'N.mm', text: 'N.mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       n: {
@@ -445,7 +445,7 @@ class TensionChordSplice {
         text: 'n',
         description: " ",
         unit: { name: 'mm', text: 'mm' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FT2Rd: {
@@ -453,7 +453,7 @@ class TensionChordSplice {
         text: 'FT2Rd',
         description: "Effort résistant en mode 2",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FT3Rd: {
@@ -461,7 +461,7 @@ class TensionChordSplice {
         text: 'FT3Rd',
         description: "Effort résistant en mode 3",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FT4Rd: {
@@ -469,7 +469,7 @@ class TensionChordSplice {
         text: 'FT4Rd',
         description: "Effort résistant en mode 4",
         unit: { name: 'N', text: 'N' }, 
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FS1: {
@@ -477,7 +477,7 @@ class TensionChordSplice {
         text: 'FS1',
         description: "Critère résistance au cisaillement",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FS2: {
@@ -485,7 +485,7 @@ class TensionChordSplice {
         text: 'FS2',
         description: "Critère résistance à la pression diamétrale",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FS3: {
@@ -493,7 +493,7 @@ class TensionChordSplice {
         text: 'FS3',
         description: "Critère résistance traction simple",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FS4: {
@@ -501,7 +501,7 @@ class TensionChordSplice {
         text: 'FS4',
         description: "Critère résistance à la traction et au cisaillement",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FS5: {
@@ -509,7 +509,7 @@ class TensionChordSplice {
         text: 'FS5',
         description: "Critère résistance poinçonnement",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       },
       FSmax: {
@@ -517,7 +517,7 @@ class TensionChordSplice {
         text: 'FSmax',
         description: "Critère dimensionnant de l'assemblage",
         unit: { name: ' ', text: ' ' }, // Without unit
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       }
     }
