@@ -9,7 +9,7 @@ const cases = require('./mocks/eurocode3_splice_plate_cases.json');
 describe('Eurocode 3 SplicePlate tests', () => {
 	cases.map(assembly => {
 		const initialState = { ...assembly };
-		const assemblyCalculation = new Eurocode3.SplicePlate({ initialState });
+		const assemblyCalculation = new Eurocode3.TensionChordSplice({ initialState });
 		console.log('STEEL ANALYSIS', assemblyCalculation.steelAnalysis);
 		describe(`${assembly.name}: assembly check`, () => {
 			describe('FvSd', () => {
