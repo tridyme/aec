@@ -3,6 +3,29 @@ class TensionChordSplice {
     this.initialState = initialState;
   };
 
+  documentation() {
+    const doc = {
+      Csgrais: {
+        name: 'Csgrais', // le "name" doit être égale à la clé et ne doit pas contenir de caractère spéciaux
+        text: 'Csgrais',
+        description: "Couple de serrage graissé",
+        unit: { name: 'N.m', text: 'N.m' }, // Unitée utilisée pour les calculs (important pour la suite quand on voudra intégré un système de conversion)
+        code: "EN 19913-1-8:2005", // Mettre le code associé si existe
+        reference: "4.2" // Mettre référence (chapitre) du code associé si existe
+      },
+      Fpt: {
+        name: 'Fpt',
+        text: 'Fpt',
+        description: "Effort de serrage, précontrainte de montage",
+        unit: { name: 'N', text: 'N' },
+        code: "EN 19913-1-8:2005",
+        reference: "4.2"
+      }
+    }
+
+    return doc;
+  }
+
   analysis() {
     return {
       Csgrais: this.Csgrais(),
@@ -193,7 +216,7 @@ class TensionChordSplice {
       e1
     } = this.initialState;
     const Pi = Math.PI;
-    return Math.min(2 * Pi * m, Pi * m * p1, Pi * m + 2 * e1);
+    return Math.min(2 * Pi * m, Pi * m + p1, Pi * m + 2 * e1);
   }
 
   //Longueur efficace des modes non circulaires
