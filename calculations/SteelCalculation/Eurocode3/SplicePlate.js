@@ -70,7 +70,7 @@ class SplicePlate {
       gammaMb
     } = this.initialState;
     const alpha = this.alpha();
-    return 2.5*apha*(d/10)*(t/10)*(fu/10)/gammaMb;
+    return 2.5*alpha*(d/10)*(t/10)*(fu/10)/gammaMb;
   }
 
   // Effort résistant vis à vis de la pression diamétrale (KN)
@@ -125,6 +125,7 @@ class SplicePlate {
       gammaM2
     } = this.initialState;
     const Anet = this.Anet()
+    return 0.9*Anet*(fu/10)/gammaM2;
   }
 }
 module.exports = SplicePlate;
