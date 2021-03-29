@@ -10,7 +10,7 @@ describe('Eurocode 3 TensionChordSplice tests', () => {
 	cases.map(assembly => {
 		const initialState = { ...assembly };
 		const assemblyCalculation = new Eurocode3.TensionChordSplice({ initialState });
-		console.log('STEEL ANALYSIS', assemblyCalculation.steelAnalysis);
+		console.log('STEEL ANALYSIS', assemblyCalculation.analysis());
 		describe(`${assembly.name}: assembly check`, () => {
 			describe('Csgrais', () => {
 				assert.isBelow(ecart(assemblyCalculation.Csgrais(), assembly.Csgrais), tolerance);
