@@ -1,4 +1,4 @@
-class BasePlate {
+/* class BasePlate {
   constructor({ initialState }) {
     this.initialState = initialState;
   }
@@ -253,4 +253,4 @@ class BasePlate {
   }
 }
 
-module.exports = BasePlate;
+module.exports = BasePlate; */

@@ -1,4 +1,4 @@
-const {
+/* const {
   assert,
   ecart,
   tolerance
@@ -31,4 +31,4 @@ describe('Custom Section Data tests', () => {
       });
     })
   }
-})
+}) */

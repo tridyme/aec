@@ -1,4 +1,4 @@
-const {
+/* const {
   assert,
   ecart,
   tolerance
@@ -87,4 +87,4 @@ describe('Eurocode 1 Wind Calculation tests', () => {
 			// });
 		});
 	})
-});
+}); */

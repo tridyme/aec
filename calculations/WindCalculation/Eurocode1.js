@@ -1,4 +1,4 @@
-class Eurocode1 {
+/* class Eurocode1 {
 	constructor({ direction, velocityRef, site }) {
     this.teta = direction;
     this.vb0 = velocityRef;
@@ -479,4 +479,4 @@ class Eurocode1 {
 
 }
 
-module.exports = Eurocode1;
+module.exports = Eurocode1; */

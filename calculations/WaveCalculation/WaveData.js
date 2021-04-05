@@ -1,4 +1,4 @@
-class WaveData {
+/* class WaveData {
 	constructor(waterDepth, wavePeriod, waveHeight) {
 		this.d = waterDepth;
 		this.T = wavePeriod;
@@ -61,4 +61,4 @@ class WaveData {
 
 }
 
-module.exports = WaveData;
+module.exports = WaveData; */
