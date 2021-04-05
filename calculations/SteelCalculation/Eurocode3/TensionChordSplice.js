@@ -5,12 +5,295 @@ class TensionChordSplice {
 
   documentation() {
     const doc = {
+      //Input
+      FtEd: {
+        name: 'FtEd', // le "name" doit être égale à la clé et ne doit pas contenir de caractère spéciaux
+        text: 'FtEd',
+        description: "Effort normal par boulon",
+        unit: { name: 'N', text: 'N' }, // Unitée utilisée pour les calculs (important pour la suite quand on voudra intégré un système de conversion)
+        code: "EN 1993-1-8:2005", // Mettre le code associé si existe
+        reference: "4.2" // Mettre référence (chapitre) du code associé si existe
+      },
+      FvEd: {
+        name: 'FvEd', 
+        text: 'FvEd',
+        description: "Effort tranchant par boulon",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      numberBolts: {
+        name: 'numberBolts', 
+        text: 'numberBolts',
+        description: "Nombre de boulons",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: " ", 
+        reference: " " 
+      },
+      steelQualityClass: {
+        name: 'steelQualityClass', 
+        text: 'steelQualityClass',
+        description: "Classe de qualité des boulons",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "NF E27-005", 
+        reference: " " 
+      },
+      t: {
+        name: 't', 
+        text: 't',
+        description: "Epaisseur du plat assemblé",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      tp: {
+        name: 'tp', 
+        text: 'tp',
+        description: "Epaisseur de la plaque située sous la tête ou l’écrou",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      p1: {
+        name: 'p1', 
+        text: 'p1',
+        description: "Pince longitudinale",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      e1: {
+        name: 'e1', 
+        text: 'e1',
+        description: "Entraxe longitudinal",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      p2: {
+        name: 'p2', 
+        text: 'p2',
+        description: "Pince transversale",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      e2: {
+        name: 'e2', 
+        text: 'e2',
+        description: "Entraxe transversale",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      m: {
+        name: 'm', 
+        text: 'm',
+        description: "Distance entre l'axe du boulon et l'âme",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      e: {
+        name: 'e', 
+        text: 'e',
+        description: "Distance entre l'axe du boulon et l'extrimité de la platine",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      D: {
+        name: 'D', 
+        text: 'D',
+        description: "Diamétre du tube",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      tf: {
+        name: 'tf', 
+        text: 'tf',
+        description: "Epaisseur du tube",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      DFlange: {
+        name: 'DFlange', 
+        text: 'DFlange',
+        description: "Diamétre extérieur du bride",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      eFlange: {
+        name: 'eFlange', 
+        text: 'eFlange',
+        description: "Epaisseur du bride",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      fy: {
+        name: 'fy', 
+        text: 'fy',
+        description: "Limite élastique des pièces assemblées",
+        unit: { name: 'N/mm²', text: 'N/mm²' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      fu: {
+        name: 'fu', 
+        text: 'fu',
+        description: "Contrainte de rupture des pièces assemblées",
+        unit: { name: 'N/mm²', text: 'N/mm²' }, 
+        code: "EN 1993-1-4", 
+        reference: "2.1" 
+      },
+      fub: {
+        name: 'fub', 
+        text: 'fub',
+        description: "Contrainte de rupture pour la classe",
+        unit: { name: 'N/mm²', text: 'N/mm²' }, 
+        code: "EN 1993-1-4", 
+        reference: "2.1" 
+      },
+      fyb: {
+        name: 'fyb', 
+        text: 'fyb',
+        description: "Limite élastique pour la classe",
+        unit: { name: 'N/mm²', text: 'N/mm²' }, 
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      gammaM0: {
+        name: 'gammaM0', 
+        text: 'gammaM0',
+        description: "Facteur partiel de sécurité",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
+      },
+      gammaM2: {
+        name: 'gammaM2', 
+        text: 'gammaM2',
+        description: "Coefficient partiel pour les assemblage boulonnés",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
+      },
+      gammaM3: {
+        name: 'gammaM3', 
+        text: 'gammaM3',
+        description: "Coefficient partiel pour le glissement",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "2.1" 
+      },
+      ftmin: {
+        name: 'ftmin', 
+        text: 'ftmin',
+        description: "Frottement minimal sous tête",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "VDI 2230", 
+        reference: " " 
+      },
+      ftmax: {
+        name: 'ftmax', 
+        text: 'ftmax',
+        description: "Frottement maximal sous tête",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "VDI 2230", 
+        reference: " " 
+      },
+      ffmax: {
+        name: 'ffmax', 
+        text: 'ffmax',
+        description: "Frottement filets de vis ",
+        unit: { name: ' ', text: ' ' }, //Without unit
+        code: "VDI 2230", 
+        reference: " " 
+      },
+      p: {
+        name: 'p', 
+        text: 'p',
+        description: "Pas de vis",
+        unit: { name: 'mm', text: 'mm' },
+        code: "ISO 965", 
+        reference: " " 
+      },
+      d: {
+        name: 'd', 
+        text: 'd',
+        description: "Diamètre nominal du boulon",
+        unit: { name: 'mm', text: 'mm' },
+        code: "ISO 965", 
+        reference: " " 
+      },
+      dm: {
+        name: 'dm', 
+        text: 'dm',
+        description: "Diamètre moyen en appui",
+        unit: { name: 'mm', text: 'mm' },
+        code: "ISO 965", 
+        reference: " " 
+      },
+      ks: {
+        name: 'ks', 
+        text: 'ks',
+        description: "Facteur de forme de trou en glissement",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "3.6" 
+      },
+      As: {
+        name: 'As', 
+        text: 'As',
+        description: "Section nette du boulon",
+        unit: { name: 'mm²', text: 'mm²' },
+        code: "EN 1993-1-8:2005", 
+        reference: "4.2" 
+      },
+      d0: {
+        name: 'd0', 
+        text: 'd0',
+        description: "Diamètre perçage",
+        unit: { name: 'mm', text: 'mm' },
+        code: "ISO 4016", 
+        reference: " " 
+      },
+      alphav: {
+        name: 'alphav', 
+        text: 'alphav',
+        description: "Facteur de forme au cisaillement",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
+      },
+      k2: {
+        name: 'k2', 
+        text: 'k2',
+        description: "Facteur de forme de tête de vis",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
+      },
+      kb: {
+        name: 'kb', 
+        text: 'kb',
+        description: "Facteur de forme de trou en pression diamétrale",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005", 
+        reference: "3.4" 
+      },
+
+      // Output
       Csgrais: {
         name: 'Csgrais', // le "name" doit être égale à la clé et ne doit pas contenir de caractère spéciaux
         text: 'Csgrais',
         description: "Couple de serrage graissé",
         unit: { name: 'N.m', text: 'N.m' }, // Unitée utilisée pour les calculs (important pour la suite quand on voudra intégré un système de conversion)
-        code: "EN 19913-1-8:2005", // Mettre le code associé si existe
+        code: "EN 1993-1-8:2005", // Mettre le code associé si existe
         reference: "4.2" // Mettre référence (chapitre) du code associé si existe
       },
       Fpt: {
@@ -18,11 +301,226 @@ class TensionChordSplice {
         text: 'Fpt',
         description: "Effort de serrage, précontrainte de montage",
         unit: { name: 'N', text: 'N' },
-        code: "EN 19913-1-8:2005",
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Fpv: {
+        name: 'Fpv',
+        text: 'Fpv',
+        description: "Effort tangentiel induit",
+        unit: { name: 'N', text: 'N' },
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+       alphad: {
+        name: 'alphad',
+        text: 'alphad',
+        description: "Facteur de forme en pression diamétrale",
+        unit: { name: ' ', text: ' ' }, // Without unit 
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
+      },
+      alphab: {
+        name: 'alphab',
+        text: 'alphab',
+        description: "Facteur de forme longitudinal",
+        unit: { name: ' ', text: ' ' }, // Without unit 
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
+      },
+      k1: {
+        name: 'k1',
+        text: 'k1',
+        description: "Facteur de forme transversal",
+        unit: { name: ' ', text: ' ' }, // Without unit 
+        code: "EN 1993-1-8:2005",
+        reference: "3.4"
+      },
+      FpC: {
+        name: 'FpC',
+        text: 'FpC',
+        description: "Effort de précontrainte",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FsRd: {
+        name: 'FsRd',
+        text: 'FsRd',
+        description: "Résistance au glissement",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FtRd: {
+        name: 'FtRd',
+        text: 'FtRd',
+        description: "Résistance à la traction",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FvRd: {
+        name: 'FvRd',
+        text: 'FvRd',
+        description: "Résistance au cisaillement",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FbRd: {
+        name: 'FbRd',
+        text: 'FbRd',
+        description: "Résistance à la pression diamétrale",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FpRd: {
+        name: 'FpRd',
+        text: 'FpRd',
+        description: "Résistance au poinçonnement",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Leffcp: {
+        name: 'Leffcp',
+        text: 'Leffcp',
+        description: "Longueur efficace des modes circulaires",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Leffnc: {
+        name: 'Leffnc',
+        text: 'Leffnc',
+        description: "Longueur efficace des modes non circulaires",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Leff1: {
+        name: 'Leff1',
+        text: 'Leff1',
+        description: "La ongueur efficace en mode 1",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Mpl1Rd: {
+        name: 'Mpl1Rd',
+        text: 'Mpl1Rd',
+        description: "Moment résistant plastique ",
+        unit: { name: 'N.mm', text: 'N.mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FT1Rd: {
+        name: 'FT1Rd',
+        text: 'FT1Rd',
+        description: "Effort résistant en mode 1 ",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Leff2: {
+        name: 'Leff2',
+        text: 'Leff2',
+        description: "La longueur efficace en mode 2",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      Mpl2Rd: {
+        name: 'Mpl2Rd',
+        text: 'Mpl2Rd',
+        description: "Moment résistant plastique en mode 2",
+        unit: { name: 'N.mm', text: 'N.mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      n: {
+        name: 'n',
+        text: 'n',
+        description: " ",
+        unit: { name: 'mm', text: 'mm' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FT2Rd: {
+        name: 'FT2Rd',
+        text: 'FT2Rd',
+        description: "Effort résistant en mode 2",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FT3Rd: {
+        name: 'FT3Rd',
+        text: 'FT3Rd',
+        description: "Effort résistant en mode 3",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FT4Rd: {
+        name: 'FT4Rd',
+        text: 'FT4Rd',
+        description: "Effort résistant en mode 4",
+        unit: { name: 'N', text: 'N' }, 
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FS1: {
+        name: 'FS1',
+        text: 'FS1',
+        description: "Critère résistance au cisaillement",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FS2: {
+        name: 'FS2',
+        text: 'FS2',
+        description: "Critère résistance à la pression diamétrale",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FS3: {
+        name: 'FS3',
+        text: 'FS3',
+        description: "Critère résistance traction simple",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FS4: {
+        name: 'FS4',
+        text: 'FS4',
+        description: "Critère résistance à la traction et au cisaillement",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FS5: {
+        name: 'FS5',
+        text: 'FS5',
+        description: "Critère résistance poinçonnement",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
+        reference: "4.2"
+      },
+      FSmax: {
+        name: 'FSmax',
+        text: 'FSmax',
+        description: "Critère dimensionnant de l'assemblage",
+        unit: { name: ' ', text: ' ' }, // Without unit
+        code: "EN 1993-1-8:2005",
         reference: "4.2"
       }
     }
-
     return doc;
   }
 
