@@ -1,4 +1,4 @@
-/* class BasePlate {
+class BasePlate {
   constructor({ initialState }) {
     this.initialState = initialState;
   }
@@ -109,7 +109,7 @@
       Nb
     } = this.initialState;
     const e = this.e();
-    return FvEd * e / alphaM / 1000;
+    return FvEd * e / alphaM / 1000 / Nb;
   }
 
 
@@ -253,4 +253,4 @@
   }
 }
 
-module.exports = BasePlate; */
+module.exports = BasePlate;
