@@ -1,29 +1,42 @@
 class TowerFoundation {
-  constructor({ initialState }) {
-    this.initialState = initialState;
+  constructor(initialState) {
+    this.initialState = {
+      Nels: Number(initialState.Nels),
+      MXels: Number(initialState.MXels),
+      VXels: Number(initialState.VXels),
+      MYels: Number(initialState.MYels),
+      VYels: Number(initialState.VYels),
+      Nelu: Number(initialState.Nelu),
+      MXelu: Number(initialState.MXelu),
+      VXelu: Number(initialState.VXelu),
+      MYelu: Number(initialState.MYelu),
+      VYelu: Number(initialState.VYelu),
+      A: Number(initialState.A),
+      B: Number(initialState.B),
+      C: Number(initialState.C),
+      D: Number(initialState.D),
+      E: Number(initialState.E),
+      F: Number(initialState.F),
+      L: Number(initialState.L),
+      H: Number(initialState.H),
+      Lf: Number(initialState.Lf),
+      deltady: Number(initialState.deltady),
+      Hf: Number(initialState.Hf),
+      Hs: Number(initialState.Hs),
+      Hms: Number(initialState.Hms),
+      sigmaels: Number(initialState.sigmaelu),
+      sigmaelu: Number(initialState.sigmaelu),
+      ztn: Number(initialState.ztn),
+      phi: Number(initialState.phi),
+      c: Number(initialState.c),
+      roRemblai: Number(initialState.roRemblai),
+      roBeton: Number(initialState.roBeton)
+    };
   };
 
   analysis() {
     return {
       Nmassif: this.Nmassif(),
-      AElsX: this.AElsX(),
-      AEluX: this.AEluX(),
-      AElsY: this.AElsY(),
-      AEluY: this.AEluY(),
-      ratioElsX: this.ratioElsX(),
-      ratioEluX: this.ratioEluX(),
-      ratioElsY: this.ratioElsY(),
-      ratioEluY: this.ratioEluY(),
-      ratioAX: this.ratioAX(),
-      elsSigmavX: this.elsSigmavX(),
-      ratioElsSigmavX: this.ratioElsSigmavX(),
-      eluSigmavX: this.eluSigmavX(),
-      ratioEluSigmavX: this.ratioEluSigmavX(),
-      ratioAY: this.ratioAY(),
-      elsSigmavY: this.elsSigmavY(),
-      ratioElsSigmavY: this.ratioElsSigmavY(),
-      eluSigmavY: this.eluSigmavY(),
-      ratioEluSigmavY: this.ratioEluSigmavY(),
       MEls: this.MEls(),
       TEls: this.TEls(),
       CrEls: this.CrEls(),
@@ -74,198 +87,8 @@ class TowerFoundation {
     return A * B * H * roBeton + roRemblai * A * B * Hms;
   }
 
-  // Surface de compression suivant X à l'ELS
-  AElsX() {
-    const {
-      A,
-      B,
-      MXels,
-      Nels,
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    return (A - 2 * MXels / (Nels + Nmassif)) * (B - 2 * MXels / (Nels + Nmassif));
-  }
-
-  // Surface de compression suivant Y à l'ELS
-  AElsY() {
-    const {
-      A,
-      B,
-      MYels,
-      Nels,
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    return (A - 2 * MYels / (Nels + Nmassif)) * (B - 2 * MYels / (Nels + Nmassif));
-  }
-
-  // Surface de compression suivant X à l'ELU
-  AEluX() {
-    const {
-      A,
-      B,
-      MXelu,
-      Nelu,
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    return (A - 2 * MXelu / (Nelu + Nmassif)) * (B - 2 * MXelu / (Nelu + Nmassif));
-  }
-
-  // Surface de compression suivant Y à l'ELU
-  AEluY() {
-    const {
-      A,
-      B,
-      MYelu,
-      Nelu,
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    return (A - 2 * MYelu / (Nelu + Nmassif)) * (B - 2 * MYelu / (Nelu + Nmassif));
-  }
-
-  // Ratio contraintes suivant X à  l'ELS
-  ratioElsX() {
-    const {
-      Nels,
-      sigmaels
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AElsX = this.AElsX();
-    return (Nels + Nmassif) / AElsX / sigmaels;
-  }
-
-  // Ratio contraintes suivant X à  l'ELU
-  ratioEluX() {
-    const {
-      Nelu,
-      sigmaelu
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AEluX = this.AEluX();
-    return (Nelu + Nmassif) / AEluX / sigmaelu;
-  }
-
-  // Ratio contraintes suivant Y à  l'ELS
-  ratioElsY() {
-    const {
-      Nels,
-      sigmaels
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AElsY = this.AElsY();
-    return (Nels + Nmassif) / AElsY / sigmaels;
-  }
-
-  // Ratio contraintes suivant Y à  l'ELU
-  ratioEluY() {
-    const {
-      Nelu,
-      sigmaelu
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AEluY = this.AEluY();
-    return (Nelu + Nmassif) / AEluY / sigmaelu;
-  }
-
-  // Ratio de section suivant X à  l'ELS
-  ratioAX() {
-    const {
-      A,
-      B,
-    } = this.initialState;
-    const AElsX = this.AElsX();
-    return AElsX / (A * B);
-  }
-
-  // Contrainte suivant X à  l'ELS
-  elsSigmavX() {
-    const {
-      Nels
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AElsX = this.AElsX();
-    return (Nels + Nmassif) / AElsX;
-  }
-
-  // ratio de contrainte suivant X à  l'ELS
-  ratioElsSigmavX() {
-    const {
-      sigmaels
-    } = this.initialState;
-    const elsSigmavX = this.elsSigmavX();
-    return elsSigmavX / sigmaels;
-  }
-
-  // Contrainte suivant X à  l'ELU
-  eluSigmavX() {
-    const {
-      Nelu
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AEluX = this.AEluX();
-    return (Nelu + 1.35 * Nmassif) / AEluX;
-  }
-
-  // ratio de contrainte suivant X à  l'ELU
-  ratioEluSigmavX() {
-    const {
-      sigmaelu
-    } = this.initialState;
-    const eluSigmavX = this.eluSigmavX();
-    return eluSigmavX / sigmaelu;
-  }
-
-  // Ratio de section suivant Y à  l'ELS
-  ratioAY() {
-    const {
-      A,
-      B,
-    } = this.initialState;
-    const AElsY = this.AElsY();
-    return AElsY / (A * B);
-  }
-
-  // Contrainte suivant Y à  l'ELS
-  elsSigmavY() {
-    const {
-      Nels
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AElsY = this.AElsY();
-    return (Nels + Nmassif) / AElsY;
-  }
-
-  // ratio de contrainte suivant Y à  l'ELS
-  ratioElsSigmavY() {
-    const {
-      sigmaels
-    } = this.initialState;
-    const elsSigmavY = this.elsSigmavY();
-    return elsSigmavY / sigmaels;
-  }
-
-  // Contrainte suivant Y à  l'ELU
-  eluSigmavY() {
-    const {
-      Nelu
-    } = this.initialState;
-    const Nmassif = this.Nmassif();
-    const AEluY = this.AEluY();
-    return (Nelu + 1.35 * Nmassif) / AEluY;
-  }
-
-  // ratio de contrainte suivant Y à  l'ELU
-  ratioEluSigmavY() {
-    const {
-      sigmaelu
-    } = this.initialState;
-    const eluSigmavY = this.eluSigmavY();
-    return eluSigmavY / sigmaelu;
-  }
-
-  //-------------------------------------------------------------
   // Vérification Fascicule 62 - titre V
   // Moment à la base du pylone à l'ELS
-  //-------------------------------------------------------------
   MEls() {
     const {
       MXels,
@@ -458,7 +281,7 @@ class TowerFoundation {
     } = this.initialState;
     const MElu = this.MElu();
     const TElu = this.TElu();
-    return MElu + TElu * (H + Hms);
+    return MElu + TElu * (Number(H) + Number(Hms));
   }
 
   // Excentricité à l'ELU
@@ -556,10 +379,10 @@ class TowerFoundation {
   // Contrainte de calcul ELU réduite
   sigmaRedElu() {
     const {
-      sigmaelu
+      sigmaels
     } = this.initialState;
     const iDeltaBetaElu = this.iDeltaBetaElu();
-    return sigmaelu * iDeltaBetaElu;
+    return sigmaels * iDeltaBetaElu;
   }
 
   // Ratio contraintes ELU

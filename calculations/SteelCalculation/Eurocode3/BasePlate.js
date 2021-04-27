@@ -1,6 +1,25 @@
 class BasePlate {
   constructor({ initialState }) {
-    this.initialState = initialState;
+    this.initialState = {
+      FtEd: Number(initialState.FtEd),
+      FvEd: Number(initialState.FvEd),
+      Nb: Number(initialState.Nb),
+      d: Number(initialState.d),
+      As: Number(initialState.As),
+      l1: Number(initialState.l1),
+      l2: Number(initialState.l2),
+      r: Number(initialState.r),
+      tp: Number(initialState.tp),
+      tg: Number(initialState.tg),
+      df: Number(initialState.df),
+      fyb: Number(initialState.fyb),
+      fub: Number(initialState.fub),
+      gammaC: Number(initialState.gammaC),
+      fck: Number(initialState.fck),
+      gammaM2: Number(initialState.gammaM2),
+      alphaM: Number(initialState.alphaM),
+      betaAnc: Number(initialState.betaAnc),
+    };
   }
 
   analysis() {

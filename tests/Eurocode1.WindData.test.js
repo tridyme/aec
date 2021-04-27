@@ -70,6 +70,7 @@ describe('Eurocode 1 Wind Data tests', () => {
 			});
 			describe('SL:', () => {
 				const { zs: z } = wind;
+				console.log('SL', wind.SL);
 				console.log('SL', ec1Data.SL({ z }));
 				assert.isBelow(ecart(ec1Data.SL({ z }), wind.SL), tolerance);
 			});

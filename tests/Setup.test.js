@@ -26,7 +26,7 @@ const ecart = (calculatedValue, targetValue) => {
   return 'ERROR';
 };
 
-const tolerance = 0.1;
+const tolerance = 0.05;
 
 module.exports = {
   assert,
