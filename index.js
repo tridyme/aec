@@ -1,9 +1,16 @@
 const fs = require('fs');
 const request = require('request-promise');
+
+// CALCULATION
 const SectionGeometry = require('./calculations/SectionGeometry');
 const SteelCalculation = require('./calculations/SteelCalculation');
 const WaveCalculation = require('./calculations/WaveCalculation');
 const WindCalculation = require('./calculations/WindCalculation');
+
+// DATABASES
+const SteelCircularHollowSectionsDB = require('./databases/steelCircularHollowSections');
+const SteelISectionsDB = require('./databases/steelISections');
+const ConcreteRectangularSectionsDB = require('./databases/concreteRectangularSections');
 
 
 module.exports = {
@@ -36,14 +43,14 @@ const sectionList = [
   { D: 42, t: 2.6 },
 ];
 
-const getSectionData = async() => {
+const getSectionData = async () => {
   let sectionDataList = [];
   await sectionList.map(async (section, index) => {
     const {
       D,
       t
     } = section;
-    const SectionAnalysis = new SectionGeometry[`CircularHollowSection`]({ D: D/1000, t: t/1000 });
+    const SectionAnalysis = new SectionGeometry[`CircularHollowSection`]({ D: D / 1000, t: t / 1000 });
     const sectionext = await SectionAnalysis.sectionext;
     const sectionint = await SectionAnalysis.sectionint;
     const sendOptions = {
@@ -100,8 +107,10 @@ const getSectionData = async() => {
     fs.writeFileSync('sectionDataList.json', data);
     console.log("JSON data is saved.");
   } catch (error) {
-      console.error(err);
+    console.error(err);
   }
 }
 
-getSectionData();
+//getSectionData();
+
+console.log('ST', SteelCircularHollowSectionsDB);
